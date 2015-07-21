@@ -10,7 +10,7 @@ namespace BimLibraryAddin
             get 
             {
                 var dir = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-                dir = Path.Combine(dir, "Interplan");
+                dir = Path.Combine(dir, "BimLibraryCZ");
                 if (!Directory.Exists(dir))
                     Directory.CreateDirectory(dir);
                 return dir;
@@ -36,17 +36,6 @@ namespace BimLibraryAddin
                 if (!File.Exists(file))
                     File.CreateText(file).Close();
                 return file;
-            }
-        }
-
-        public static string ClassificationsFolder
-        {
-            get 
-            {
-                var dir = Path.Combine(WorkingPath, "Classifications");
-                if (!Directory.Exists(dir))
-                    Directory.CreateDirectory(dir);
-                return dir;
             }
         }
     }
