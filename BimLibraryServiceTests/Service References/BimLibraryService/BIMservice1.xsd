@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Nop.Core" />
+  <xs:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Product" nillable="true" type="tns:Product" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProduct" nillable="true" type="tns:ArrayOfProduct" />
+  <xs:complexType name="Product">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Nop.Core" base="q1:BaseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AdditionalShippingCharge" type="xs:decimal" />
+          <xs:element minOccurs="0" name="AdminComment" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AllowAddingOnlyExistingAttributeCombinations" type="xs:boolean" />
+          <xs:element minOccurs="0" name="AllowBackInStockSubscriptions" type="xs:boolean" />
+          <xs:element minOccurs="0" name="AllowCustomerReviews" type="xs:boolean" />
+          <xs:element minOccurs="0" name="AllowedQuantities" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ApprovedRatingSum" type="xs:int" />
+          <xs:element minOccurs="0" name="ApprovedTotalReviews" type="xs:int" />
+          <xs:element minOccurs="0" name="AutomaticallyAddRequiredProducts" type="xs:boolean" />
+          <xs:element minOccurs="0" name="AvailableEndDateTimeUtc" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="AvailableForPreOrder" type="xs:boolean" />
+          <xs:element minOccurs="0" name="AvailableStartDateTimeUtc" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="BackorderMode" type="tns:BackorderMode" />
+          <xs:element minOccurs="0" name="BackorderModeId" type="xs:int" />
+          <xs:element minOccurs="0" name="CallForPrice" type="xs:boolean" />
+          <xs:element minOccurs="0" name="CreatedOnUtc" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CustomerEntersPrice" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="DeliveryDateId" type="xs:int" />
+          <xs:element minOccurs="0" name="DisableBuyButton" type="xs:boolean" />
+          <xs:element minOccurs="0" name="DisableWishlistButton" type="xs:boolean" />
+          <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+          <xs:element minOccurs="0" name="DisplayStockAvailability" type="xs:boolean" />
+          <xs:element minOccurs="0" name="DisplayStockQuantity" type="xs:boolean" />
+          <xs:element minOccurs="0" name="DownloadActivationType" type="tns:DownloadActivationType" />
+          <xs:element minOccurs="0" name="DownloadActivationTypeId" type="xs:int" />
+          <xs:element minOccurs="0" name="DownloadExpirationDays" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="DownloadId" type="xs:int" />
+          <xs:element minOccurs="0" name="FullDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="GiftCardType" type="tns:GiftCardType" />
+          <xs:element minOccurs="0" name="GiftCardTypeId" type="xs:int" />
+          <xs:element minOccurs="0" name="Gtin" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HasDiscountsApplied" type="xs:boolean" />
+          <xs:element minOccurs="0" name="HasSampleDownload" type="xs:boolean" />
+          <xs:element minOccurs="0" name="HasTierPrices" type="xs:boolean" />
+          <xs:element minOccurs="0" name="HasUserAgreement" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Height" type="xs:decimal" />
+          <xs:element minOccurs="0" name="IsDownload" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsFreeShipping" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsGiftCard" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsRecurring" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsRental" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsShipEnabled" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsTaxExempt" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsTelecommunicationsOrBroadcastingOrElectronicServices" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Length" type="xs:decimal" />
+          <xs:element minOccurs="0" name="LimitedToStores" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LowStockActivity" type="tns:LowStockActivity" />
+          <xs:element minOccurs="0" name="LowStockActivityId" type="xs:int" />
+          <xs:element minOccurs="0" name="ManageInventoryMethod" type="tns:ManageInventoryMethod" />
+          <xs:element minOccurs="0" name="ManageInventoryMethodId" type="xs:int" />
+          <xs:element minOccurs="0" name="ManufacturerPartNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MaxNumberOfDownloads" type="xs:int" />
+          <xs:element minOccurs="0" name="MaximumCustomerEnteredPrice" type="xs:decimal" />
+          <xs:element minOccurs="0" name="MetaDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MetaKeywords" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MetaTitle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MinStockQuantity" type="xs:int" />
+          <xs:element minOccurs="0" name="MinimumCustomerEnteredPrice" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NotApprovedRatingSum" type="xs:int" />
+          <xs:element minOccurs="0" name="NotApprovedTotalReviews" type="xs:int" />
+          <xs:element minOccurs="0" name="NotifyAdminForQuantityBelow" type="xs:int" />
+          <xs:element minOccurs="0" name="OldPrice" type="xs:decimal" />
+          <xs:element minOccurs="0" name="OrderMaximumQuantity" type="xs:int" />
+          <xs:element minOccurs="0" name="OrderMinimumQuantity" type="xs:int" />
+          <xs:element minOccurs="0" name="ParentGroupedProductId" type="xs:int" />
+          <xs:element minOccurs="0" name="PreOrderAvailabilityStartDateTimeUtc" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+          <xs:element minOccurs="0" name="ProductCost" type="xs:decimal" />
+          <xs:element minOccurs="0" name="ProductTemplateId" type="xs:int" />
+          <xs:element minOccurs="0" name="ProductType" type="tns:ProductType" />
+          <xs:element minOccurs="0" name="ProductTypeId" type="xs:int" />
+          <xs:element minOccurs="0" name="Published" type="xs:boolean" />
+          <xs:element minOccurs="0" name="RecurringCycleLength" type="xs:int" />
+          <xs:element minOccurs="0" name="RecurringCyclePeriod" type="tns:RecurringProductCyclePeriod" />
+          <xs:element minOccurs="0" name="RecurringCyclePeriodId" type="xs:int" />
+          <xs:element minOccurs="0" name="RecurringTotalCycles" type="xs:int" />
+          <xs:element minOccurs="0" name="RentalPriceLength" type="xs:int" />
+          <xs:element minOccurs="0" name="RentalPricePeriod" type="tns:RentalPricePeriod" />
+          <xs:element minOccurs="0" name="RentalPricePeriodId" type="xs:int" />
+          <xs:element minOccurs="0" name="RequireOtherProducts" type="xs:boolean" />
+          <xs:element minOccurs="0" name="RequiredProductIds" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SampleDownloadId" type="xs:int" />
+          <xs:element minOccurs="0" name="ShipSeparately" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ShortDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ShowOnHomePage" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Sku" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SpecialPrice" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SpecialPriceEndDateTimeUtc" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="SpecialPriceStartDateTimeUtc" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="StockQuantity" type="xs:int" />
+          <xs:element minOccurs="0" name="SubjectToAcl" type="xs:boolean" />
+          <xs:element minOccurs="0" name="TaxCategoryId" type="xs:int" />
+          <xs:element minOccurs="0" name="UnlimitedDownloads" type="xs:boolean" />
+          <xs:element minOccurs="0" name="UpdatedOnUtc" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="UseMultipleWarehouses" type="xs:boolean" />
+          <xs:element minOccurs="0" name="UserAgreementText" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="VendorId" type="xs:int" />
+          <xs:element minOccurs="0" name="VisibleIndividually" type="xs:boolean" />
+          <xs:element minOccurs="0" name="WarehouseId" type="xs:int" />
+          <xs:element minOccurs="0" name="Weight" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Width" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Product" nillable="true" type="tns:Product" />
+  <xs:simpleType name="BackorderMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NoBackorders" />
+      <xs:enumeration value="AllowQtyBelow0" />
+      <xs:enumeration value="AllowQtyBelow0AndNotifyCustomer" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BackorderMode" nillable="true" type="tns:BackorderMode" />
+  <xs:simpleType name="DownloadActivationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WhenOrderIsPaid">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Manually">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DownloadActivationType" nillable="true" type="tns:DownloadActivationType" />
+  <xs:simpleType name="GiftCardType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Virtual" />
+      <xs:enumeration value="Physical" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GiftCardType" nillable="true" type="tns:GiftCardType" />
+  <xs:simpleType name="LowStockActivity">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Nothing" />
+      <xs:enumeration value="DisableBuyButton" />
+      <xs:enumeration value="Unpublish" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LowStockActivity" nillable="true" type="tns:LowStockActivity" />
+  <xs:simpleType name="ManageInventoryMethod">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DontManageStock" />
+      <xs:enumeration value="ManageStock" />
+      <xs:enumeration value="ManageStockByAttributes" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ManageInventoryMethod" nillable="true" type="tns:ManageInventoryMethod" />
+  <xs:simpleType name="ProductType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SimpleProduct">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GroupedProduct">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ProductType" nillable="true" type="tns:ProductType" />
+  <xs:simpleType name="RecurringProductCyclePeriod">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Days" />
+      <xs:enumeration value="Weeks">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Months">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">20</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Years">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">30</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="RecurringProductCyclePeriod" nillable="true" type="tns:RecurringProductCyclePeriod" />
+  <xs:simpleType name="RentalPricePeriod">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Days" />
+      <xs:enumeration value="Weeks">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Months">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">20</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Years">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">30</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="RentalPricePeriod" nillable="true" type="tns:RentalPricePeriod" />
+</xs:schema>
