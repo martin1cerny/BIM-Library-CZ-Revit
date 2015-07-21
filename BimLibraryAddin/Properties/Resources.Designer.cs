@@ -59,51 +59,5 @@ namespace BimLibraryAddin.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &quot;Code&quot;,&quot;Title&quot;,&quot;Parent&quot;
-        ///&quot;01&quot;,&quot;Substructure&quot;,&quot;&quot;
-        ///&quot;01.01&quot;,&quot;Foundations&quot;,&quot;01&quot;
-        ///&quot;01.02&quot;,&quot;Basement Excavation&quot;,&quot;01&quot;
-        ///&quot;01.03&quot;,&quot;Basement Retaining Walls&quot;,&quot;01&quot;
-        ///&quot;01.04&quot;,&quot;Ground Floor Construction&quot;,&quot;01&quot;
-        ///&quot;02&quot;,&quot;Superstructure&quot;,&quot;&quot;
-        ///&quot;02.01&quot;,&quot;Frame&quot;,&quot;02&quot;
-        ///&quot;02.01.01&quot;,&quot;Steel Frames&quot;,&quot;02.01&quot;
-        ///&quot;02.01.02&quot;,&quot;Space Frames/Decks&quot;,&quot;02.01&quot;
-        ///&quot;02.01.03&quot;,&quot;Concrete Casings to Steel Frames&quot;,&quot;02.01&quot;
-        ///&quot;02.01.04&quot;,&quot;Concrete Frames&quot;,&quot;02.01&quot;
-        ///&quot;02.01.05&quot;,&quot;Timber Frames&quot;,&quot;02.01&quot;
-        ///&quot;02.01.06&quot;,&quot;Specialist Frames&quot;,&quot;02.01&quot;
-        ///&quot;02.02&quot;,&quot;Upper Floors&quot;, [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string myFM {
-            get {
-                return ResourceManager.GetString("myFM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &quot;Code&quot;,&quot;Title&quot;,&quot;Parent&quot;
-        ///&quot;01&quot;,&quot;Substructure&quot;,&quot;&quot;
-        ///&quot;01.01&quot;,&quot;Foundations&quot;,&quot;01&quot;
-        ///&quot;01.02&quot;,&quot;Basement Excavation&quot;,&quot;01&quot;
-        ///&quot;01.03&quot;,&quot;Basement Retaining Walls&quot;,&quot;01&quot;
-        ///&quot;01.04&quot;,&quot;Ground Floor Construction&quot;,&quot;01&quot;
-        ///&quot;02&quot;,&quot;Superstructure&quot;,&quot;&quot;
-        ///&quot;02.01&quot;,&quot;Frame&quot;,&quot;02&quot;
-        ///&quot;02.01.01&quot;,&quot;Steel Frames&quot;,&quot;02.01&quot;
-        ///&quot;02.01.02&quot;,&quot;Space Frames/Decks&quot;,&quot;02.01&quot;
-        ///&quot;02.01.03&quot;,&quot;Concrete Casings to Steel Frames&quot;,&quot;02.01&quot;
-        ///&quot;02.01.04&quot;,&quot;Concrete Frames&quot;,&quot;02.01&quot;
-        ///&quot;02.01.05&quot;,&quot;Timber Frames&quot;,&quot;02.01&quot;
-        ///&quot;02.01.06&quot;,&quot;Specialist Frames&quot;,&quot;02.01&quot;
-        ///&quot;02.02&quot;,&quot;Upper Floors&quot;, [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string NRM {
-            get {
-                return ResourceManager.GetString("NRM", resourceCulture);
-            }
-        }
     }
 }

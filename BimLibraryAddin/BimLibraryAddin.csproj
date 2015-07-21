@@ -16,6 +16,27 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug2016|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug2016\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Revit2016</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release2016|AnyCPU' ">
+    <OutputPath>bin\Release2016\</OutputPath>
+    <DefineConstants>TRACE;Revit2016</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug2015|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug2015\</OutputPath>
     <DefineConstants>TRACE;DEBUG;Revit2015</DefineConstants>
     <DebugType>full</DebugType>
@@ -24,7 +45,7 @@
     <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release2016|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release2015|AnyCPU' ">
     <OutputPath>bin\Release2015\</OutputPath>
     <DefineConstants>TRACE;Revit2015</DefineConstants>
     <Optimize>true</Optimize>
@@ -36,17 +57,26 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+    <!-- Revit 2015 -->
+    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2015' Or '$(Configuration)' == 'Debug2015'">
+      <HintPath>c:\Program Files\Autodesk\Revit 2015\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2015' Or '$(Configuration)' == 'Debug2015'">
+      <HintPath>c:\Program Files\Autodesk\Revit 2015\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <!-- Revit 2016 -->
     <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2016' Or '$(Configuration)' == 'Debug2016'">
-      <HintPath>Libs\2016\RevitAPI.dll</HintPath>
+      <HintPath>c:\Program Files\Autodesk\Revit 2016\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2016' Or '$(Configuration)' == 'Debug2016'">
-      <HintPath>Libs\2016\RevitAPIUI.dll</HintPath>
+      <HintPath>c:\Program Files\Autodesk\Revit 2016\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
@@ -62,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddIns\Availability.cs" />
+    <Compile Include="AddIns\ProductSearchAddIn.cs" />
     <Compile Include="DummyReference.cs" />
     <Compile Include="ExceptionLog.cs" />
     <Compile Include="Extensions\ApplicationExtensions.cs" />
@@ -141,8 +172,9 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Icons\" />
+    <Resource Include="Icons\logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

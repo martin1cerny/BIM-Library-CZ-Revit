@@ -178,11 +178,6 @@ namespace Autodesk.Revit.DB
             return GetParameter(element, paramType, parameterName, BuiltInParameterGroup.PG_IFC);
         }
 
-        public static Parameter GetParameter(this Element element, InterplanAddin.ParameterDefinition definition)
-        {
-            return GetParameter(element, definition.Type, definition.Name, definition.Group);
-        }
-
         /// <summary>
         /// Returns shared or built-in parameter of the specified name. parameter.IsShared property identifies the type.
         /// If it does not exist it is created in the shared parameters file with specified name in the specified group. That must be defined in advance

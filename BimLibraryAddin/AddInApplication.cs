@@ -7,10 +7,8 @@ using Autodesk.Revit.UI;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Reflection;
-using InterplanAddin.AddIns;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.ApplicationServices;
-using InterplanAddin.Dialogs;
 using Autodesk.Revit.DB.Events;
 
 namespace BimLibraryAddin
@@ -33,47 +31,33 @@ namespace BimLibraryAddin
         {
 
             // add new ribbon panel 
-            application.CreateRibbonTab("Interplan");
-            _panel = application.CreateRibbonPanel("Interplan", "Nástroje myFM");
+            application.CreateRibbonTab("Národní BIM knihovna");
+            _panel = application.CreateRibbonPanel("Národní BIM knihovna", "Nástroje");
             _panel.Enabled = true;
 
             //get assembly of this class to set the right path to other objects in this assembly
-            Assembly assembly = Assembly.GetAssembly(this.GetType());
-            string assemblyPath = assembly.Location;
-            string dirPath = Path.GetDirectoryName(assemblyPath);
+            var assembly = Assembly.GetAssembly(this.GetType());
+            var assemblyPath = assembly.Location;
+            var dirPath = Path.GetDirectoryName(assemblyPath);
 
             //-----------------------------BUTTONS FOR COMMANDS ----------------------------
             var btnSettings = _panel.AddItem(new PushButtonData(
-                "InterplanSettings",
-                "Nastavení",
+                "GetObject",
+                "Vyhledávání",
                 assemblyPath,
-                "InterplanAddin.Dialogs.InterplanSettings"
+                "BimLibraryAddin.AddIns.ProductSearchAddIn"
                 )) as PushButton;
-            btnSettings.LargeImage = new BitmapImage(new Uri("pack://application:,,,/InterplanAddin;component/Icons/icon_settings.ico"));
-            btnSettings.AvailabilityClassName = "InterplanAddin.AddIns.InitializedAvailability";
-            btnSettings.ToolTip = "Nastavení parametrů pro myFM firmy Interplan";
+            btnSettings.LargeImage = new BitmapImage(new Uri("pack://application:,,,/BimLibraryAddin;component/Icons/logo.ico"));
+            btnSettings.AvailabilityClassName = "BimLibraryAddin.AddIns.DocumentAvailability";
+            btnSettings.ToolTip = "Vyhledávání objektů v národní BIM knihovně";
             btnSettings.LongDescription = 
-@"Tyto parametry jsou určeny pro zachování vazeb se systémem myFM firmy Interplan pro Facility Management.";
-
-            var btnBatchFill = _panel.AddItem(new PushButtonData(
-               "InterplanBatchFill",
-               "Hromadné vyplnění \n parametrů",
-               assemblyPath,
-               "InterplanAddin.Dialogs.BatchFiller"
-               )) as PushButton;
-            btnBatchFill.LargeImage = new BitmapImage(new Uri("pack://application:,,,/InterplanAddin;component/Icons/icon_batch_fill.ico"));
-            btnBatchFill.AvailabilityClassName = "InterplanAddin.AddIns.InitializedAvailability";
-            btnBatchFill.ToolTip = "Hromadné vyplnění parametrů pro systém myFM.";
-            btnBatchFill.LongDescription = 
-@"Tento nástroj je vhodný zejména pro hromadné vyplnění parametrů u projektu, který nebyl dosud inicializován pro myFM. Zároveň je možné jej využít k hromadným opravám. Pokud je nástroj použit na výběr, budou přepsány existující hodnoty. Pokud je použit bez výběru, jsou pouze vyplněny chybějící hodnoty.";
-
-                        
+@"Vyhledané objekty je možné importovat do aktuálního projektu a okamžitě použít.";
 
             application.ControlledApplication.DocumentOpened += new EventHandler<DocumentOpenedEventArgs>(ControlledApplication_DocumentOpened);
             application.ControlledApplication.DocumentCreated += new EventHandler<DocumentCreatedEventArgs>(ControlledApplication_DocumentCreating);
             application.ControlledApplication.DocumentClosing += new EventHandler<DocumentClosingEventArgs>(ControlledApplication_DocumentClosing);
             application.ControlledApplication.DocumentOpening += new EventHandler<DocumentOpeningEventArgs>(ControlledApplication_DocumentOpening);
-            application.ControlledApplication.DocumentChanged += new EventHandler<DocumentChangedEventArgs>(GuidUpdater.OnDocumentChanged);
+            //application.ControlledApplication.DocumentChanged += new EventHandler<DocumentChangedEventArgs>();
 
             //register failures
             Failures.RegisterFailures();

@@ -11,46 +11,36 @@ using System.ComponentModel;
 using Autodesk.Revit.DB.Events;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using InterplanAddin.Dialogs;
-using InterplanAddin.Helpers;
+using BimLibraryAddin.Helpers;
 
 namespace BimLibraryAddin
 {
     public class ProjectSettingsManager
     {
-        private Guid _schemaGuid = new Guid("890F9BB5-3436-45AA-9480-E371125F9576");
-        private Element _element;
-        private Schema _schema;
-        private Entity _entity;
+        private readonly Guid _schemaGuid = new Guid("21AF21DE-157E-4EFE-9BFF-C4CDD4D27714");
+        private readonly Element _element;
+        private readonly Schema _schema;
+        private readonly Entity _entity;
         private ProjectSettingsData _data;
-        private static Dictionary<Document, ProjectSettingsManager> _cache;
-
-        static ProjectSettingsManager()
-        {
-            _cache = new Dictionary<Document, ProjectSettingsManager>();
-        }
+        private static readonly Dictionary<Document, ProjectSettingsManager> Cache = new Dictionary<Document, ProjectSettingsManager>();
 
         public static ProjectSettingsData GetSettings(Document document)
         {
             ProjectSettingsManager sett = null;
-            if (_cache.TryGetValue(document, out sett))
+            if (Cache.TryGetValue(document, out sett))
                 return sett._data;
-            else
-            { 
-                var psm = new ProjectSettingsManager(document);
-                return psm._data;
-            }
+            
+            var psm = new ProjectSettingsManager(document);
+            return psm._data;
         }
 
         
 
         private ProjectSettingsManager(Document document)
         {
-            FilteredElementCollector col = new FilteredElementCollector(document).OfClass(typeof(ProjectInfo));
+            var col = new FilteredElementCollector(document).OfClass(typeof(ProjectInfo));
             _element = col.ToElements().First();
-            _schema = Schema.Lookup(_schemaGuid);
-            if (_schema == null)
-                _schema = GetStorageSchema();
+            _schema = Schema.Lookup(_schemaGuid) ?? GetStorageSchema();
 
             //get entity from element if it exists in there already or create new otherwise
             _entity = _element.GetEntity(_schema);
@@ -60,41 +50,14 @@ namespace BimLibraryAddin
             LoadData(document);
 
             //static cache management
-            _cache.Add(document, this);
-            _data.PropertyChanged += new PropertyChangedEventHandler(OnSettingsChanged);
+            Cache.Add(document, this);
             document.DocumentClosing += new EventHandler<DocumentClosingEventArgs>(OnDocumentClosing);
             document.Application.DocumentSynchronizedWithCentral += new EventHandler<DocumentSynchronizedWithCentralEventArgs>(OnDocumentSynchronized);
-            document.Application.DocumentChanged += new EventHandler<DocumentChangedEventArgs>(delegate(object sender, DocumentChangedEventArgs args) 
+            document.Application.DocumentChanged += new EventHandler<DocumentChangedEventArgs>((sender, args) =>
                 {
                     if (args.Operation == UndoOperation.TransactionUndone || args.Operation == UndoOperation.TransactionRedone)
                     {
-                        //check for interplan transaction
-                        var names = args.GetTransactionNames();
-                        if (IsInterplanTransaction(names))
-                            //reload settings for the case it is changed in the undo operation
-                            LoadData(args.GetDocument());
-
-                        if (args.Operation == UndoOperation.TransactionUndone && args.GetTransactionNames().Contains("Interplan init"))
-                        {
-                            //parameter binding is being undone
-                            InterplanDialog.ShowDialog("Varování","Dokument nyní NEBUDE inicializován pro myFM.");
-                        }
-                    }
-
-                    //check if the document has been initialized
-                    var sett = ProjectSettingsManager.GetSettings(document);
-                    var initialized = sett.IsInitialized;
-
-                    //check if updater is active in this document
-                    var updaterActive = InterplanAddin.AddIns.GuidUpdater.IsActiveInDocument(document);
-
-                    if (initialized && !updaterActive)
-                    {
-                        InterplanDialog.ShowDialog("Varování", "Projekt byl inicializován pro myFM, ale parametry nejsou ověřovány. Pravděpodobně jste inicializovali projekt dodatečně. Je třeba projekt uložit, zavřít a znovu otevřít.");
-                    }
-                    if (!initialized && updaterActive)
-                    {
-                        InterplanDialog.ShowDialog("Varování", "Projekt není inicializován pro myFM, ale parametry jsou ověřovány. Pravděpodobně jste zrušili inicializaci v jednom z kroků 'Zpět'. Inicializujte projekt nástrojem z nabídky 'Interplan', nebo zavřete a znovu otevřete projekt. V tom případě nebudou parametry myFM dále sledovány.");
+                       
                     }
                 });
         }
@@ -108,82 +71,36 @@ namespace BimLibraryAddin
         private void OnDocumentSynchronized(object sender, DocumentSynchronizedWithCentralEventArgs args)
         {
             var document = args.Document;
-            if (_cache.Keys.Contains(document))
-                _cache.Remove(document);
+            if (Cache.Keys.Contains(document))
+                Cache.Remove(document);
         }
 
-        private bool IsInterplanTransaction(IEnumerable<string> names)
-        {
-            foreach (var name in names)
-            {
-                if (name.ToLower().Contains("interplan"))
-                    return true;
-            }
-            return false;
-        }
-
-        private const string fieldNameData = "Data";
-        private const string fieldNameSystems = "Systems";
-
-        private IPSystemCollection GetSystems()
-        {
-            //get XML string from entity if if exists in there
-            var field = _schema.GetField(fieldNameSystems);
-            var xmlString = _entity.Get<String>(field);
-            if (String.IsNullOrEmpty(xmlString))
-            {
-                return new IPSystemCollection() { Document = _element.Document};
-            }
-            else
-            {
-                var systems = SerializationHelper.Deserialize<IPSystemCollection>(xmlString);
-                systems.Document = _element.Document;
-                foreach (var system in systems)
-                {
-                    foreach (var item in system.AllItems)
-                    {
-                        item.SetDocument(_element.Document);
-                    }
-                }
-                return systems;
-            }
-        }
-
-        private void SaveSystemsToDocument(IPSystemCollection systems)
-        {
-            //serialize collection
-            var xmlString = SerializationHelper.Serialize<IPSystemCollection>(systems);
-
-            //add resulting XML string to the entity
-            var field = _schema.GetField(fieldNameSystems);
-            _entity.Set<String>(field, xmlString);
-
-            //save actual settings
-            _element.SetEntity(_entity);
-
-        }
+        private const string FieldNameData = "Data";
 
         private void LoadData(Document document)
         {
             //get XML string from entity if if exists in there
-            var field = _schema.GetField(fieldNameData);
+            var field = _schema.GetField(FieldNameData);
             var xmlString = _entity.Get<String>(field);
-            if (String.IsNullOrEmpty(xmlString))
-            {
-                //create new data if there is nothing specified yet
-                _data = new ProjectSettingsData();
-            }
-            else
-            {
-                //parse data from the XML string
-                _data = SerializationHelper.Deserialize<ProjectSettingsData>(xmlString);
-            }
+            _data = String.IsNullOrEmpty(xmlString) ? 
+                new ProjectSettingsData() : 
+                SerializationHelper.Deserialize<ProjectSettingsData>(xmlString);
         }
 
         void OnDocumentClosing(object sender, DocumentClosingEventArgs e)
         {
+            //serialize actual settings
+            var xmlString = SerializationHelper.Serialize<ProjectSettingsData>(_data);
+
+            //add resulting XML string to the entity
+            var field = _schema.GetField(FieldNameData);
+            _entity.Set(field, xmlString);
+
+            //save actual settings
+            _element.SetEntity(_entity);
+
             //remove this from the static cache
-            _cache.Remove(_element.Document);
+            Cache.Remove(_element.Document);
         }
 
         private Schema GetStorageSchema()
@@ -194,7 +111,7 @@ namespace BimLibraryAddin
             bld.SetReadAccessLevel(AccessLevel.Public);
             //bld.SetVendorId("ADSK");
             bld.SetDocumentation("This schema stores project specific application data of Czech BIM Library.");
-            bld.AddSimpleField(fieldNameData, typeof(String)).SetDocumentation("Data field");
+            bld.AddSimpleField(FieldNameData, typeof(String)).SetDocumentation("Data field");
 
             return bld.Finish();
         }
@@ -202,23 +119,8 @@ namespace BimLibraryAddin
        
     }
 
-    public class Notifier : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(String info)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
-        } 
-    }
-
-    public class ProjectSettingsData : Notifier
+    public class ProjectSettingsData
 	{
-        public ProjectSettingsData()
-        {
-        }
 
     }
 }
