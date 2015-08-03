@@ -119,6 +119,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Service References\BimLibraryService\BimLibraryAddin.BimLibraryService.Category1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\BimLibraryService\BimLibraryAddin.BimLibraryService.Product.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -152,6 +155,24 @@
     <None Include="Service References\BimLibraryService\BIMservice.disco" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\BimLibraryService\BIMservice410.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BimLibraryService\BIMservice411.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BimLibraryService\BIMservice46.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BimLibraryService\BIMservice47.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BimLibraryService\BIMservice48.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BimLibraryService\BIMservice49.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\BimLibraryService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>

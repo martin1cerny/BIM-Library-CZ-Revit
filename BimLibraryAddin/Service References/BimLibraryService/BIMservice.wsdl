@@ -6,6 +6,12 @@
       <xsd:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" />
       <xsd:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Nop.Core" />
+      <xsd:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Discounts" />
+      <xsd:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Media" />
+      <xsd:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Customers" />
+      <xsd:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Common" />
+      <xsd:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Directory" />
+      <xsd:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Shipping" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IBIMservice_DoWork_InputMessage">
@@ -20,6 +26,12 @@
   <wsdl:message name="IBIMservice_GetProductByName_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetProductByNameResponse" />
   </wsdl:message>
+  <wsdl:message name="IBIMservice_GetAllCategoriesByParentCategoryId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCategoriesByParentCategoryId" />
+  </wsdl:message>
+  <wsdl:message name="IBIMservice_GetAllCategoriesByParentCategoryId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCategoriesByParentCategoryIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBIMservice">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="http://tempuri.org/IBIMservice/DoWork" message="tns:IBIMservice_DoWork_InputMessage" />
@@ -28,6 +40,10 @@
     <wsdl:operation name="GetProductByName">
       <wsdl:input wsaw:Action="http://tempuri.org/IBIMservice/GetProductByName" message="tns:IBIMservice_GetProductByName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBIMservice/GetProductByNameResponse" message="tns:IBIMservice_GetProductByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCategoriesByParentCategoryId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBIMservice/GetAllCategoriesByParentCategoryId" message="tns:IBIMservice_GetAllCategoriesByParentCategoryId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBIMservice/GetAllCategoriesByParentCategoryIdResponse" message="tns:IBIMservice_GetAllCategoriesByParentCategoryId_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBIMservice" type="tns:IBIMservice">
@@ -43,6 +59,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetProductByName">
       <soap:operation soapAction="http://tempuri.org/IBIMservice/GetProductByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCategoriesByParentCategoryId">
+      <soap:operation soapAction="http://tempuri.org/IBIMservice/GetAllCategoriesByParentCategoryId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

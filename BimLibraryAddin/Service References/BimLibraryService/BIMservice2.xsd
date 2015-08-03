@@ -8,7 +8,9 @@
   </xs:element>
   <xs:element name="DoWorkResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DoWorkResult" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetProductByName">
@@ -22,6 +24,21 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" minOccurs="0" name="GetProductByNameResult" nillable="true" type="q1:ArrayOfProduct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllCategoriesByParentCategoryId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parentCategoryId" type="xs:int" />
+        <xs:element minOccurs="0" name="showHidden" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllCategoriesByParentCategoryIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" minOccurs="0" name="GetAllCategoriesByParentCategoryIdResult" nillable="true" type="q2:ArrayOfCategory" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
