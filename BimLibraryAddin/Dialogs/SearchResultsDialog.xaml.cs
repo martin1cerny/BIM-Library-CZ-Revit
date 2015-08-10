@@ -36,6 +36,9 @@ namespace BimLibraryAddin.Dialogs
         public static readonly DependencyProperty ProductsProperty =
             DependencyProperty.Register("Products", typeof(IEnumerable<ProductViewModel>), typeof(SearchResultsDialog), new PropertyMetadata(null));
 
-        
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -17,6 +17,8 @@ namespace BimLibraryAddin
     [Transaction(TransactionMode.Manual)]
     public class AddInApplication : IExternalApplication 
     {
+        internal static int Used = 0;
+
         private RibbonPanel _panel;
 
         public Result OnShutdown(UIControlledApplication application)

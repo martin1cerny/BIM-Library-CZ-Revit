@@ -12,13 +12,14 @@
       <xsd:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Common" />
       <xsd:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Directory" />
       <xsd:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Shipping" />
+      <xsd:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd10" namespace="http://schemas.microsoft.com/Message" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IBIMservice_DoWork_InputMessage">
-    <wsdl:part name="parameters" element="tns:DoWork" />
+  <wsdl:message name="IBIMservice_Test_InputMessage">
+    <wsdl:part name="parameters" element="tns:Test" />
   </wsdl:message>
-  <wsdl:message name="IBIMservice_DoWork_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
+  <wsdl:message name="IBIMservice_Test_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestResponse" />
   </wsdl:message>
   <wsdl:message name="IBIMservice_GetProductByName_InputMessage">
     <wsdl:part name="parameters" element="tns:GetProductByName" />
@@ -26,30 +27,50 @@
   <wsdl:message name="IBIMservice_GetProductByName_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetProductByNameResponse" />
   </wsdl:message>
+  <wsdl:message name="IBIMservice_GetAllCategoriesWithLevelByParentCategoryId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCategoriesWithLevelByParentCategoryId" />
+  </wsdl:message>
+  <wsdl:message name="IBIMservice_GetAllCategoriesWithLevelByParentCategoryId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCategoriesWithLevelByParentCategoryIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IBIMservice_GetAllCategoriesByParentCategoryId_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllCategoriesByParentCategoryId" />
   </wsdl:message>
   <wsdl:message name="IBIMservice_GetAllCategoriesByParentCategoryId_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllCategoriesByParentCategoryIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IBIMservice_GetZip_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZip" />
+  </wsdl:message>
+  <wsdl:message name="IBIMservice_GetZip_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZipResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBIMservice">
-    <wsdl:operation name="DoWork">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBIMservice/DoWork" message="tns:IBIMservice_DoWork_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBIMservice/DoWorkResponse" message="tns:IBIMservice_DoWork_OutputMessage" />
+    <wsdl:operation name="Test">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBIMservice/Test" message="tns:IBIMservice_Test_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBIMservice/TestResponse" message="tns:IBIMservice_Test_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetProductByName">
       <wsdl:input wsaw:Action="http://tempuri.org/IBIMservice/GetProductByName" message="tns:IBIMservice_GetProductByName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBIMservice/GetProductByNameResponse" message="tns:IBIMservice_GetProductByName_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllCategoriesWithLevelByParentCategoryId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBIMservice/GetAllCategoriesWithLevelByParentCategoryId" message="tns:IBIMservice_GetAllCategoriesWithLevelByParentCategoryId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBIMservice/GetAllCategoriesWithLevelByParentCategoryIdResponse" message="tns:IBIMservice_GetAllCategoriesWithLevelByParentCategoryId_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetAllCategoriesByParentCategoryId">
       <wsdl:input wsaw:Action="http://tempuri.org/IBIMservice/GetAllCategoriesByParentCategoryId" message="tns:IBIMservice_GetAllCategoriesByParentCategoryId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBIMservice/GetAllCategoriesByParentCategoryIdResponse" message="tns:IBIMservice_GetAllCategoriesByParentCategoryId_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetZip">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBIMservice/GetZip" message="tns:IBIMservice_GetZip_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBIMservice/GetZipResponse" message="tns:IBIMservice_GetZip_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBIMservice" type="tns:IBIMservice">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="DoWork">
-      <soap:operation soapAction="http://tempuri.org/IBIMservice/DoWork" style="document" />
+    <wsdl:operation name="Test">
+      <soap:operation soapAction="http://tempuri.org/IBIMservice/Test" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -66,8 +87,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllCategoriesWithLevelByParentCategoryId">
+      <soap:operation soapAction="http://tempuri.org/IBIMservice/GetAllCategoriesWithLevelByParentCategoryId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAllCategoriesByParentCategoryId">
       <soap:operation soapAction="http://tempuri.org/IBIMservice/GetAllCategoriesByParentCategoryId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZip">
+      <soap:operation soapAction="http://tempuri.org/IBIMservice/GetZip" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

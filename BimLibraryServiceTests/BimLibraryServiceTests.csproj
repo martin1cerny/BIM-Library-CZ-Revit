@@ -35,10 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -53,6 +57,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ControlTest.xaml.cs">
+      <DependentUpon>ControlTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service References\BimLibraryService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,6 +73,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Service References\BimLibraryService\BimLibraryServiceTests.BimLibraryService.Category.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\BimLibraryService\BimLibraryServiceTests.BimLibraryService.Product.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -90,6 +100,27 @@
     <None Include="Service References\BimLibraryService\BIMservice.disco" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\BimLibraryService\BIMservice4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BimLibraryService\BIMservice41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BimLibraryService\BIMservice42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BimLibraryService\BIMservice43.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BimLibraryService\BIMservice44.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BimLibraryService\BIMservice45.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BimLibraryService\BIMservice46.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\BimLibraryService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +131,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ControlTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

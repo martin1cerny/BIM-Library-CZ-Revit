@@ -2476,6 +2476,9 @@ namespace BimLibraryAddin.BimLibraryService {
         private int CategoryTemplateIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private BimLibraryAddin.BimLibraryService.Category[] ChildrenField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime CreatedOnUtcField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2557,6 +2560,19 @@ namespace BimLibraryAddin.BimLibraryService {
                 if ((this.CategoryTemplateIdField.Equals(value) != true)) {
                     this.CategoryTemplateIdField = value;
                     this.RaisePropertyChanged("CategoryTemplateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public BimLibraryAddin.BimLibraryService.Category[] Children {
+            get {
+                return this.ChildrenField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ChildrenField, value) != true)) {
+                    this.ChildrenField = value;
+                    this.RaisePropertyChanged("Children");
                 }
             }
         }
@@ -5634,11 +5650,11 @@ namespace BimLibraryAddin.BimLibraryService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BimLibraryService.IBIMservice")]
     public interface IBIMservice {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/DoWork", ReplyAction="http://tempuri.org/IBIMservice/DoWorkResponse")]
-        string DoWork();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/Test", ReplyAction="http://tempuri.org/IBIMservice/TestResponse")]
+        string Test();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/DoWork", ReplyAction="http://tempuri.org/IBIMservice/DoWorkResponse")]
-        System.Threading.Tasks.Task<string> DoWorkAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/Test", ReplyAction="http://tempuri.org/IBIMservice/TestResponse")]
+        System.Threading.Tasks.Task<string> TestAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetProductByName", ReplyAction="http://tempuri.org/IBIMservice/GetProductByNameResponse")]
         BimLibraryAddin.BimLibraryService.Product[] GetProductByName(string name);
@@ -5646,11 +5662,25 @@ namespace BimLibraryAddin.BimLibraryService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetProductByName", ReplyAction="http://tempuri.org/IBIMservice/GetProductByNameResponse")]
         System.Threading.Tasks.Task<BimLibraryAddin.BimLibraryService.Product[]> GetProductByNameAsync(string name);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetAllCategoriesWithLevelByParentCategoryId", ReplyAction="http://tempuri.org/IBIMservice/GetAllCategoriesWithLevelByParentCategoryIdRespons" +
+            "e")]
+        BimLibraryAddin.BimLibraryService.Category[] GetAllCategoriesWithLevelByParentCategoryId(int parentCategoryId, bool showHidden, int level);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetAllCategoriesWithLevelByParentCategoryId", ReplyAction="http://tempuri.org/IBIMservice/GetAllCategoriesWithLevelByParentCategoryIdRespons" +
+            "e")]
+        System.Threading.Tasks.Task<BimLibraryAddin.BimLibraryService.Category[]> GetAllCategoriesWithLevelByParentCategoryIdAsync(int parentCategoryId, bool showHidden, int level);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetAllCategoriesByParentCategoryId", ReplyAction="http://tempuri.org/IBIMservice/GetAllCategoriesByParentCategoryIdResponse")]
         BimLibraryAddin.BimLibraryService.Category[] GetAllCategoriesByParentCategoryId(int parentCategoryId, bool showHidden);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetAllCategoriesByParentCategoryId", ReplyAction="http://tempuri.org/IBIMservice/GetAllCategoriesByParentCategoryIdResponse")]
         System.Threading.Tasks.Task<BimLibraryAddin.BimLibraryService.Category[]> GetAllCategoriesByParentCategoryIdAsync(int parentCategoryId, bool showHidden);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetZip", ReplyAction="http://tempuri.org/IBIMservice/GetZipResponse")]
+        System.IO.Stream GetZip(int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetZip", ReplyAction="http://tempuri.org/IBIMservice/GetZipResponse")]
+        System.Threading.Tasks.Task<System.IO.Stream> GetZipAsync(int productId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -5680,12 +5710,12 @@ namespace BimLibraryAddin.BimLibraryService {
                 base(binding, remoteAddress) {
         }
         
-        public string DoWork() {
-            return base.Channel.DoWork();
+        public string Test() {
+            return base.Channel.Test();
         }
         
-        public System.Threading.Tasks.Task<string> DoWorkAsync() {
-            return base.Channel.DoWorkAsync();
+        public System.Threading.Tasks.Task<string> TestAsync() {
+            return base.Channel.TestAsync();
         }
         
         public BimLibraryAddin.BimLibraryService.Product[] GetProductByName(string name) {
@@ -5696,12 +5726,28 @@ namespace BimLibraryAddin.BimLibraryService {
             return base.Channel.GetProductByNameAsync(name);
         }
         
+        public BimLibraryAddin.BimLibraryService.Category[] GetAllCategoriesWithLevelByParentCategoryId(int parentCategoryId, bool showHidden, int level) {
+            return base.Channel.GetAllCategoriesWithLevelByParentCategoryId(parentCategoryId, showHidden, level);
+        }
+        
+        public System.Threading.Tasks.Task<BimLibraryAddin.BimLibraryService.Category[]> GetAllCategoriesWithLevelByParentCategoryIdAsync(int parentCategoryId, bool showHidden, int level) {
+            return base.Channel.GetAllCategoriesWithLevelByParentCategoryIdAsync(parentCategoryId, showHidden, level);
+        }
+        
         public BimLibraryAddin.BimLibraryService.Category[] GetAllCategoriesByParentCategoryId(int parentCategoryId, bool showHidden) {
             return base.Channel.GetAllCategoriesByParentCategoryId(parentCategoryId, showHidden);
         }
         
         public System.Threading.Tasks.Task<BimLibraryAddin.BimLibraryService.Category[]> GetAllCategoriesByParentCategoryIdAsync(int parentCategoryId, bool showHidden) {
             return base.Channel.GetAllCategoriesByParentCategoryIdAsync(parentCategoryId, showHidden);
+        }
+        
+        public System.IO.Stream GetZip(int productId) {
+            return base.Channel.GetZip(productId);
+        }
+        
+        public System.Threading.Tasks.Task<System.IO.Stream> GetZipAsync(int productId) {
+            return base.Channel.GetZipAsync(productId);
         }
     }
 }

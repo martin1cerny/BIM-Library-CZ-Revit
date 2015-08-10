@@ -5,14 +5,40 @@
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
             mc:Ignorable="d" 
             d:DesignHeight="300" d:DesignWidth="300" Icon="/BimLibraryAddin;component/Icons/logo.ico"
+            WindowStartupLocation="CenterScreen"
+            Title="Nalezené výrobky"
             Name="self">
+    <Window.CommandBindings>
+        <CommandBinding Command="Close" Executed="CommandBinding_Executed" />
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="Close" />
+    </Window.InputBindings>
     <Grid>
-        <ListBox ItemsSource="{Binding ElementName=self, Path=Products}" >
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <DataGrid ItemsSource="{Binding ElementName=self, Path=Products}" 
+                  AutoGenerateColumns="False" 
+                  CanUserAddRows="False" 
+                  CanUserDeleteRows="False"
+                  CanUserReorderColumns="True" 
+                  CanUserSortColumns="True" IsReadOnly="True" 
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Název" Binding="{Binding Name}"/>
+                <DataGridTemplateColumn Header="Obrázek">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding FirstImage}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Popis" Binding="{Binding ShortDescription}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

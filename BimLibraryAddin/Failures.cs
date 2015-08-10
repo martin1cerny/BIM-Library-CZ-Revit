@@ -18,7 +18,7 @@ namespace BimLibraryAddin
         public static void RegisterFailures()
         {
 
-            GeneralFailure = new FailureDefinitionId(new Guid("2AE7F8A8-34A4-4DAC-A753-6218DBCC9806"));
+            GeneralFailure = new FailureDefinitionId(new Guid("14281B4C-0AD0-4654-88DD-68E2021F4131"));
             FailureDefinition.CreateFailureDefinition(GeneralFailure, FailureSeverity.Error,
                 "Jejda, někde se stala chyba. Snad se to již nebude opakovat. Podívejte se prosím do souboru "+ Paths.ErrorFile);
 

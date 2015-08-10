@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autodesk.Revit.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,9 +28,26 @@ namespace BimLibraryAddin.Dialogs
             InitializeComponent();
         }
 
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+
+            txtSearch.Focus();
+        }
+
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = !String.IsNullOrWhiteSpace(txtSearch.Text);
+            if (String.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                TaskDialog.Show("Zadejte hodnotu", "Zadejte hledaný text");
+                return;
+            }
+            DialogResult = true;
+            Close();
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
             Close();
         }
     }

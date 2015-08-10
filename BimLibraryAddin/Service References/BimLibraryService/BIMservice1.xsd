@@ -140,6 +140,7 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="AllowCustomersToSelectPageSize" type="xs:boolean" />
           <xs:element minOccurs="0" name="CategoryTemplateId" type="xs:int" />
+          <xs:element minOccurs="0" name="Children" nillable="true" type="tns:ArrayOfCategory" />
           <xs:element minOccurs="0" name="CreatedOnUtc" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
           <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />

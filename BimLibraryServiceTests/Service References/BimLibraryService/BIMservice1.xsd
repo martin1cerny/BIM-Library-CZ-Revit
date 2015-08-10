@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Discounts" />
   <xs:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Nop.Core" />
   <xs:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Media" />
+  <xs:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Customers" />
+  <xs:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Shipping" />
   <xs:complexType name="ArrayOfProduct">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Product" nillable="true" type="tns:Product" />
@@ -12,132 +16,243 @@
     <xs:complexContent mixed="false">
       <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Nop.Core" base="q1:BaseEntity">
         <xs:sequence>
-          <xs:element minOccurs="0" name="AdditionalShippingCharge" type="xs:decimal" />
-          <xs:element minOccurs="0" name="AdminComment" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="AllowAddingOnlyExistingAttributeCombinations" type="xs:boolean" />
-          <xs:element minOccurs="0" name="AllowBackInStockSubscriptions" type="xs:boolean" />
-          <xs:element minOccurs="0" name="AllowCustomerReviews" type="xs:boolean" />
-          <xs:element minOccurs="0" name="AllowedQuantities" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="ApprovedRatingSum" type="xs:int" />
-          <xs:element minOccurs="0" name="ApprovedTotalReviews" type="xs:int" />
-          <xs:element minOccurs="0" name="AutomaticallyAddRequiredProducts" type="xs:boolean" />
-          <xs:element minOccurs="0" name="AvailableEndDateTimeUtc" nillable="true" type="xs:dateTime" />
-          <xs:element minOccurs="0" name="AvailableForPreOrder" type="xs:boolean" />
-          <xs:element minOccurs="0" name="AvailableStartDateTimeUtc" nillable="true" type="xs:dateTime" />
-          <xs:element minOccurs="0" name="BackorderMode" type="tns:BackorderMode" />
-          <xs:element minOccurs="0" name="BackorderModeId" type="xs:int" />
-          <xs:element minOccurs="0" name="CallForPrice" type="xs:boolean" />
-          <xs:element minOccurs="0" name="CreatedOnUtc" type="xs:dateTime" />
-          <xs:element minOccurs="0" name="CustomerEntersPrice" type="xs:boolean" />
-          <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
-          <xs:element minOccurs="0" name="DeliveryDateId" type="xs:int" />
-          <xs:element minOccurs="0" name="DisableBuyButton" type="xs:boolean" />
-          <xs:element minOccurs="0" name="DisableWishlistButton" type="xs:boolean" />
-          <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
-          <xs:element minOccurs="0" name="DisplayStockAvailability" type="xs:boolean" />
-          <xs:element minOccurs="0" name="DisplayStockQuantity" type="xs:boolean" />
-          <xs:element minOccurs="0" name="DownloadActivationType" type="tns:DownloadActivationType" />
-          <xs:element minOccurs="0" name="DownloadActivationTypeId" type="xs:int" />
-          <xs:element minOccurs="0" name="DownloadExpirationDays" nillable="true" type="xs:int" />
-          <xs:element minOccurs="0" name="DownloadId" type="xs:int" />
-          <xs:element minOccurs="0" name="FullDescription" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="GiftCardType" type="tns:GiftCardType" />
-          <xs:element minOccurs="0" name="GiftCardTypeId" type="xs:int" />
-          <xs:element minOccurs="0" name="Gtin" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="HasDiscountsApplied" type="xs:boolean" />
-          <xs:element minOccurs="0" name="HasSampleDownload" type="xs:boolean" />
-          <xs:element minOccurs="0" name="HasTierPrices" type="xs:boolean" />
-          <xs:element minOccurs="0" name="HasUserAgreement" type="xs:boolean" />
-          <xs:element minOccurs="0" name="Height" type="xs:decimal" />
-          <xs:element minOccurs="0" name="IsDownload" type="xs:boolean" />
-          <xs:element minOccurs="0" name="IsFreeShipping" type="xs:boolean" />
-          <xs:element minOccurs="0" name="IsGiftCard" type="xs:boolean" />
-          <xs:element minOccurs="0" name="IsRecurring" type="xs:boolean" />
-          <xs:element minOccurs="0" name="IsRental" type="xs:boolean" />
-          <xs:element minOccurs="0" name="IsShipEnabled" type="xs:boolean" />
-          <xs:element minOccurs="0" name="IsTaxExempt" type="xs:boolean" />
-          <xs:element minOccurs="0" name="IsTelecommunicationsOrBroadcastingOrElectronicServices" type="xs:boolean" />
-          <xs:element minOccurs="0" name="Length" type="xs:decimal" />
-          <xs:element minOccurs="0" name="LimitedToStores" type="xs:boolean" />
-          <xs:element minOccurs="0" name="LowStockActivity" type="tns:LowStockActivity" />
-          <xs:element minOccurs="0" name="LowStockActivityId" type="xs:int" />
-          <xs:element minOccurs="0" name="ManageInventoryMethod" type="tns:ManageInventoryMethod" />
-          <xs:element minOccurs="0" name="ManageInventoryMethodId" type="xs:int" />
-          <xs:element minOccurs="0" name="ManufacturerPartNumber" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="MaxNumberOfDownloads" type="xs:int" />
-          <xs:element minOccurs="0" name="MaximumCustomerEnteredPrice" type="xs:decimal" />
-          <xs:element minOccurs="0" name="MetaDescription" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="MetaKeywords" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="MetaTitle" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="MinStockQuantity" type="xs:int" />
-          <xs:element minOccurs="0" name="MinimumCustomerEnteredPrice" type="xs:decimal" />
-          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="NotApprovedRatingSum" type="xs:int" />
-          <xs:element minOccurs="0" name="NotApprovedTotalReviews" type="xs:int" />
-          <xs:element minOccurs="0" name="NotifyAdminForQuantityBelow" type="xs:int" />
-          <xs:element minOccurs="0" name="OldPrice" type="xs:decimal" />
-          <xs:element minOccurs="0" name="OrderMaximumQuantity" type="xs:int" />
-          <xs:element minOccurs="0" name="OrderMinimumQuantity" type="xs:int" />
-          <xs:element minOccurs="0" name="ParentGroupedProductId" type="xs:int" />
-          <xs:element minOccurs="0" name="PreOrderAvailabilityStartDateTimeUtc" nillable="true" type="xs:dateTime" />
-          <xs:element minOccurs="0" name="Price" type="xs:decimal" />
-          <xs:element minOccurs="0" name="ProductCost" type="xs:decimal" />
-          <xs:element minOccurs="0" name="ProductTemplateId" type="xs:int" />
-          <xs:element minOccurs="0" name="ProductType" type="tns:ProductType" />
-          <xs:element minOccurs="0" name="ProductTypeId" type="xs:int" />
-          <xs:element minOccurs="0" name="Published" type="xs:boolean" />
-          <xs:element minOccurs="0" name="RecurringCycleLength" type="xs:int" />
-          <xs:element minOccurs="0" name="RecurringCyclePeriod" type="tns:RecurringProductCyclePeriod" />
-          <xs:element minOccurs="0" name="RecurringCyclePeriodId" type="xs:int" />
-          <xs:element minOccurs="0" name="RecurringTotalCycles" type="xs:int" />
-          <xs:element minOccurs="0" name="RentalPriceLength" type="xs:int" />
-          <xs:element minOccurs="0" name="RentalPricePeriod" type="tns:RentalPricePeriod" />
-          <xs:element minOccurs="0" name="RentalPricePeriodId" type="xs:int" />
-          <xs:element minOccurs="0" name="RequireOtherProducts" type="xs:boolean" />
-          <xs:element minOccurs="0" name="RequiredProductIds" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="SampleDownloadId" type="xs:int" />
-          <xs:element minOccurs="0" name="ShipSeparately" type="xs:boolean" />
-          <xs:element minOccurs="0" name="ShortDescription" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="ShowOnHomePage" type="xs:boolean" />
-          <xs:element minOccurs="0" name="Sku" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="SpecialPrice" nillable="true" type="xs:decimal" />
-          <xs:element minOccurs="0" name="SpecialPriceEndDateTimeUtc" nillable="true" type="xs:dateTime" />
-          <xs:element minOccurs="0" name="SpecialPriceStartDateTimeUtc" nillable="true" type="xs:dateTime" />
-          <xs:element minOccurs="0" name="StockQuantity" type="xs:int" />
-          <xs:element minOccurs="0" name="SubjectToAcl" type="xs:boolean" />
-          <xs:element minOccurs="0" name="TaxCategoryId" type="xs:int" />
-          <xs:element minOccurs="0" name="UnlimitedDownloads" type="xs:boolean" />
-          <xs:element minOccurs="0" name="UpdatedOnUtc" type="xs:dateTime" />
-          <xs:element minOccurs="0" name="UseMultipleWarehouses" type="xs:boolean" />
-          <xs:element minOccurs="0" name="UserAgreementText" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="VendorId" type="xs:int" />
-          <xs:element minOccurs="0" name="VisibleIndividually" type="xs:boolean" />
-          <xs:element minOccurs="0" name="WarehouseId" type="xs:int" />
-          <xs:element minOccurs="0" name="Weight" type="xs:decimal" />
-          <xs:element minOccurs="0" name="Width" type="xs:decimal" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Discounts" name="_appliedDiscounts" nillable="true" type="q2:ArrayOfDiscount" />
+          <xs:element name="_productAttributeCombinations" nillable="true" type="tns:ArrayOfProductAttributeCombination" />
+          <xs:element name="_productAttributeMappings" nillable="true" type="tns:ArrayOfProductAttributeMapping" />
+          <xs:element name="_productCategories" nillable="true" type="tns:ArrayOfProductCategory" />
+          <xs:element name="_productManufacturers" nillable="true" type="tns:ArrayOfProductManufacturer" />
+          <xs:element name="_productModel3Ds" nillable="true" type="tns:ArrayOfProductModel3D" />
+          <xs:element name="_productPictures" nillable="true" type="tns:ArrayOfProductPicture" />
+          <xs:element name="_productReviews" nillable="true" type="tns:ArrayOfProductReview" />
+          <xs:element name="_productSpecificationAttributes" nillable="true" type="tns:ArrayOfProductSpecificationAttribute" />
+          <xs:element name="_productTags" nillable="true" type="tns:ArrayOfProductTag" />
+          <xs:element name="_productWarehouseInventory" nillable="true" type="tns:ArrayOfProductWarehouseInventory" />
+          <xs:element name="_tierPrices" nillable="true" type="tns:ArrayOfTierPrice" />
+          <xs:element name="_x003C_AdditionalShippingCharge_x003E_k__BackingField" type="xs:decimal" />
+          <xs:element name="_x003C_AdminComment_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_AllowAddingOnlyExistingAttributeCombinations_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_AllowBackInStockSubscriptions_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_AllowCustomerReviews_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_AllowedQuantities_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_ApprovedRatingSum_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_ApprovedTotalReviews_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_AutomaticallyAddRequiredProducts_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_AvailableEndDateTimeUtc_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+          <xs:element name="_x003C_AvailableForPreOrder_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_AvailableStartDateTimeUtc_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+          <xs:element name="_x003C_BackorderModeId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_CallForPrice_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_CreatedOnUtc_x003E_k__BackingField" type="xs:dateTime" />
+          <xs:element name="_x003C_CustomerEntersPrice_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_Deleted_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_DeliveryDateId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_DisableBuyButton_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_DisableWishlistButton_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_DisplayOrder_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_DisplayStockAvailability_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_DisplayStockQuantity_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_DownloadActivationTypeId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_DownloadExpirationDays_x003E_k__BackingField" nillable="true" type="xs:int" />
+          <xs:element name="_x003C_DownloadId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_FullDescription_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_GiftCardTypeId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Gtin_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_HasDiscountsApplied_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_HasSampleDownload_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_HasTierPrices_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_HasUserAgreement_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_Height_x003E_k__BackingField" type="xs:decimal" />
+          <xs:element name="_x003C_IsDownload_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_IsFreeShipping_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_IsGiftCard_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_IsRecurring_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_IsRental_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_IsShipEnabled_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_IsTaxExempt_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_IsTelecommunicationsOrBroadcastingOrElectronicServices_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_Length_x003E_k__BackingField" type="xs:decimal" />
+          <xs:element name="_x003C_LimitedToStores_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_LowStockActivityId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_ManageInventoryMethodId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_ManufacturerPartNumber_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_MaxNumberOfDownloads_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_MaximumCustomerEnteredPrice_x003E_k__BackingField" type="xs:decimal" />
+          <xs:element name="_x003C_MetaDescription_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_MetaKeywords_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_MetaTitle_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_MinStockQuantity_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_MinimumCustomerEnteredPrice_x003E_k__BackingField" type="xs:decimal" />
+          <xs:element name="_x003C_Name_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_NotApprovedRatingSum_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_NotApprovedTotalReviews_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_NotifyAdminForQuantityBelow_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_OldPrice_x003E_k__BackingField" type="xs:decimal" />
+          <xs:element name="_x003C_OrderMaximumQuantity_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_OrderMinimumQuantity_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_ParentGroupedProductId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_PreOrderAvailabilityStartDateTimeUtc_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+          <xs:element name="_x003C_Price_x003E_k__BackingField" type="xs:decimal" />
+          <xs:element name="_x003C_ProductCost_x003E_k__BackingField" type="xs:decimal" />
+          <xs:element name="_x003C_ProductTemplateId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_ProductTypeId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Published_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_RecurringCycleLength_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_RecurringCyclePeriodId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_RecurringTotalCycles_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_RentalPriceLength_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_RentalPricePeriodId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_RequireOtherProducts_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_RequiredProductIds_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_SampleDownloadId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_ShipSeparately_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_ShortDescription_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_ShowOnHomePage_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_Sku_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_SpecialPriceEndDateTimeUtc_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+          <xs:element name="_x003C_SpecialPriceStartDateTimeUtc_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+          <xs:element name="_x003C_SpecialPrice_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+          <xs:element name="_x003C_StockQuantity_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_SubjectToAcl_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_TaxCategoryId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_UnlimitedDownloads_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_UpdatedOnUtc_x003E_k__BackingField" type="xs:dateTime" />
+          <xs:element name="_x003C_UseMultipleWarehouses_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_UserAgreementText_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_VendorId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_VisibleIndividually_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_WarehouseId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Weight_x003E_k__BackingField" type="xs:decimal" />
+          <xs:element name="_x003C_Width_x003E_k__BackingField" type="xs:decimal" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="Product" nillable="true" type="tns:Product" />
-  <xs:simpleType name="BackorderMode">
+  <xs:complexType name="ArrayOfCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Category" nillable="true" type="tns:Category" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCategory" nillable="true" type="tns:ArrayOfCategory" />
+  <xs:complexType name="Category">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Nop.Core" base="q3:BaseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AllowCustomersToSelectPageSize" type="xs:boolean" />
+          <xs:element minOccurs="0" name="CategoryTemplateId" type="xs:int" />
+          <xs:element minOccurs="0" name="Children" nillable="true" type="tns:ArrayOfCategory" />
+          <xs:element minOccurs="0" name="CreatedOnUtc" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+          <xs:element minOccurs="0" name="HasDiscountsApplied" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IncludeInTopMenu" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LimitedToStores" type="xs:boolean" />
+          <xs:element minOccurs="0" name="MetaDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MetaKeywords" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MetaTitle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+          <xs:element minOccurs="0" name="PageSizeOptions" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ParentCategoryId" type="xs:int" />
+          <xs:element minOccurs="0" name="PictureId" type="xs:int" />
+          <xs:element minOccurs="0" name="PriceRanges" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Published" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ShowOnHomePage" type="xs:boolean" />
+          <xs:element minOccurs="0" name="SubjectToAcl" type="xs:boolean" />
+          <xs:element minOccurs="0" name="UpdatedOnUtc" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Category" nillable="true" type="tns:Category" />
+  <xs:complexType name="ArrayOfProductAttributeCombination">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductAttributeCombination" nillable="true" type="tns:ProductAttributeCombination" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductAttributeCombination" nillable="true" type="tns:ArrayOfProductAttributeCombination" />
+  <xs:complexType name="ProductAttributeCombination">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/Nop.Core" base="q4:BaseEntity">
+        <xs:sequence>
+          <xs:element name="_x003C_AllowOutOfStockOrders_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_AttributesXml_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_Gtin_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_ManufacturerPartNumber_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_NotifyAdminForQuantityBelow_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_OverriddenPrice_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+          <xs:element name="_x003C_ProductId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Product_x003E_k__BackingField" nillable="true" type="tns:Product" />
+          <xs:element name="_x003C_Sku_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_StockQuantity_x003E_k__BackingField" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductAttributeCombination" nillable="true" type="tns:ProductAttributeCombination" />
+  <xs:complexType name="ArrayOfProductAttributeMapping">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductAttributeMapping" nillable="true" type="tns:ProductAttributeMapping" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductAttributeMapping" nillable="true" type="tns:ArrayOfProductAttributeMapping" />
+  <xs:complexType name="ProductAttributeMapping">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/Nop.Core" base="q5:BaseEntity">
+        <xs:sequence>
+          <xs:element name="_productAttributeValues" nillable="true" type="tns:ArrayOfProductAttributeValue" />
+          <xs:element name="_x003C_AttributeControlTypeId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_DefaultValue_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_DisplayOrder_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_IsRequired_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_ProductAttributeId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_ProductAttribute_x003E_k__BackingField" nillable="true" type="tns:ProductAttribute" />
+          <xs:element name="_x003C_ProductId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Product_x003E_k__BackingField" nillable="true" type="tns:Product" />
+          <xs:element name="_x003C_TextPrompt_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_ValidationFileAllowedExtensions_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_ValidationFileMaximumSize_x003E_k__BackingField" nillable="true" type="xs:int" />
+          <xs:element name="_x003C_ValidationMaxLength_x003E_k__BackingField" nillable="true" type="xs:int" />
+          <xs:element name="_x003C_ValidationMinLength_x003E_k__BackingField" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductAttributeMapping" nillable="true" type="tns:ProductAttributeMapping" />
+  <xs:complexType name="ArrayOfProductAttributeValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductAttributeValue" nillable="true" type="tns:ProductAttributeValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductAttributeValue" nillable="true" type="tns:ArrayOfProductAttributeValue" />
+  <xs:complexType name="ProductAttributeValue">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/Nop.Core" base="q6:BaseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AssociatedProductId" type="xs:int" />
+          <xs:element minOccurs="0" name="AttributeValueType" type="tns:AttributeValueType" />
+          <xs:element minOccurs="0" name="AttributeValueTypeId" type="xs:int" />
+          <xs:element minOccurs="0" name="ColorSquaresRgb" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cost" type="xs:decimal" />
+          <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+          <xs:element minOccurs="0" name="IsPreSelected" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PictureId" type="xs:int" />
+          <xs:element minOccurs="0" name="PriceAdjustment" type="xs:decimal" />
+          <xs:element minOccurs="0" name="ProductAttributeMapping" nillable="true" type="tns:ProductAttributeMapping" />
+          <xs:element minOccurs="0" name="ProductAttributeMappingId" type="xs:int" />
+          <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+          <xs:element minOccurs="0" name="WeightAdjustment" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductAttributeValue" nillable="true" type="tns:ProductAttributeValue" />
+  <xs:simpleType name="AttributeValueType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="NoBackorders" />
-      <xs:enumeration value="AllowQtyBelow0" />
-      <xs:enumeration value="AllowQtyBelow0AndNotifyCustomer" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="BackorderMode" nillable="true" type="tns:BackorderMode" />
-  <xs:simpleType name="DownloadActivationType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="WhenOrderIsPaid">
-        <xs:annotation>
-          <xs:appinfo>
-            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="Manually">
+      <xs:enumeration value="Simple" />
+      <xs:enumeration value="AssociatedToProduct">
         <xs:annotation>
           <xs:appinfo>
             <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
@@ -146,101 +261,279 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:element name="DownloadActivationType" nillable="true" type="tns:DownloadActivationType" />
-  <xs:simpleType name="GiftCardType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Virtual" />
-      <xs:enumeration value="Physical" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="GiftCardType" nillable="true" type="tns:GiftCardType" />
-  <xs:simpleType name="LowStockActivity">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Nothing" />
-      <xs:enumeration value="DisableBuyButton" />
-      <xs:enumeration value="Unpublish" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="LowStockActivity" nillable="true" type="tns:LowStockActivity" />
-  <xs:simpleType name="ManageInventoryMethod">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="DontManageStock" />
-      <xs:enumeration value="ManageStock" />
-      <xs:enumeration value="ManageStockByAttributes" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="ManageInventoryMethod" nillable="true" type="tns:ManageInventoryMethod" />
-  <xs:simpleType name="ProductType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="SimpleProduct">
-        <xs:annotation>
-          <xs:appinfo>
-            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="GroupedProduct">
-        <xs:annotation>
-          <xs:appinfo>
-            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="ProductType" nillable="true" type="tns:ProductType" />
-  <xs:simpleType name="RecurringProductCyclePeriod">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Days" />
-      <xs:enumeration value="Weeks">
-        <xs:annotation>
-          <xs:appinfo>
-            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="Months">
-        <xs:annotation>
-          <xs:appinfo>
-            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">20</EnumerationValue>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="Years">
-        <xs:annotation>
-          <xs:appinfo>
-            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">30</EnumerationValue>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="RecurringProductCyclePeriod" nillable="true" type="tns:RecurringProductCyclePeriod" />
-  <xs:simpleType name="RentalPricePeriod">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Days" />
-      <xs:enumeration value="Weeks">
-        <xs:annotation>
-          <xs:appinfo>
-            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="Months">
-        <xs:annotation>
-          <xs:appinfo>
-            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">20</EnumerationValue>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="Years">
-        <xs:annotation>
-          <xs:appinfo>
-            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">30</EnumerationValue>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="RentalPricePeriod" nillable="true" type="tns:RentalPricePeriod" />
+  <xs:element name="AttributeValueType" nillable="true" type="tns:AttributeValueType" />
+  <xs:complexType name="ProductAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/Nop.Core" base="q7:BaseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductAttribute" nillable="true" type="tns:ProductAttribute" />
+  <xs:complexType name="ArrayOfProductCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductCategory" nillable="true" type="tns:ProductCategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductCategory" nillable="true" type="tns:ArrayOfProductCategory" />
+  <xs:complexType name="ProductCategory">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/Nop.Core" base="q8:BaseEntity">
+        <xs:sequence>
+          <xs:element name="_x003C_CategoryId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Category_x003E_k__BackingField" nillable="true" type="tns:Category" />
+          <xs:element name="_x003C_DisplayOrder_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_IsFeaturedProduct_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_ProductId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Product_x003E_k__BackingField" nillable="true" type="tns:Product" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductCategory" nillable="true" type="tns:ProductCategory" />
+  <xs:complexType name="ArrayOfProductManufacturer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductManufacturer" nillable="true" type="tns:ProductManufacturer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductManufacturer" nillable="true" type="tns:ArrayOfProductManufacturer" />
+  <xs:complexType name="ProductManufacturer">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/Nop.Core" base="q9:BaseEntity">
+        <xs:sequence>
+          <xs:element name="_x003C_DisplayOrder_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_IsFeaturedProduct_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_ManufacturerId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Manufacturer_x003E_k__BackingField" nillable="true" type="tns:Manufacturer" />
+          <xs:element name="_x003C_ProductId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Product_x003E_k__BackingField" nillable="true" type="tns:Product" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductManufacturer" nillable="true" type="tns:ProductManufacturer" />
+  <xs:complexType name="Manufacturer">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/Nop.Core" base="q10:BaseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AllowCustomersToSelectPageSize" type="xs:boolean" />
+          <xs:element minOccurs="0" name="CreatedOnUtc" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+          <xs:element minOccurs="0" name="LimitedToStores" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ManufacturerTemplateId" type="xs:int" />
+          <xs:element minOccurs="0" name="MetaDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MetaKeywords" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MetaTitle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+          <xs:element minOccurs="0" name="PageSizeOptions" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PictureId" type="xs:int" />
+          <xs:element minOccurs="0" name="PriceRanges" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Published" type="xs:boolean" />
+          <xs:element minOccurs="0" name="SubjectToAcl" type="xs:boolean" />
+          <xs:element minOccurs="0" name="UpdatedOnUtc" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Manufacturer" nillable="true" type="tns:Manufacturer" />
+  <xs:complexType name="ArrayOfProductModel3D">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductModel3D" nillable="true" type="tns:ProductModel3D" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductModel3D" nillable="true" type="tns:ArrayOfProductModel3D" />
+  <xs:complexType name="ProductModel3D">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/Nop.Core" base="q11:BaseEntity">
+        <xs:sequence>
+          <xs:element name="_x003C_DisplayOrder_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Model3DId_x003E_k__BackingField" type="xs:int" />
+          <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Media" name="_x003C_Model3D_x003E_k__BackingField" nillable="true" type="q12:Model3D" />
+          <xs:element name="_x003C_ProductId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Product_x003E_k__BackingField" nillable="true" type="tns:Product" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductModel3D" nillable="true" type="tns:ProductModel3D" />
+  <xs:complexType name="ArrayOfProductPicture">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductPicture" nillable="true" type="tns:ProductPicture" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductPicture" nillable="true" type="tns:ArrayOfProductPicture" />
+  <xs:complexType name="ProductPicture">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/Nop.Core" base="q13:BaseEntity">
+        <xs:sequence>
+          <xs:element name="_x003C_DisplayOrder_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_PictureId_x003E_k__BackingField" type="xs:int" />
+          <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Media" name="_x003C_Picture_x003E_k__BackingField" nillable="true" type="q14:Picture" />
+          <xs:element name="_x003C_ProductId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Product_x003E_k__BackingField" nillable="true" type="tns:Product" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductPicture" nillable="true" type="tns:ProductPicture" />
+  <xs:complexType name="ArrayOfProductReview">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductReview" nillable="true" type="tns:ProductReview" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductReview" nillable="true" type="tns:ArrayOfProductReview" />
+  <xs:complexType name="ProductReview">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/Nop.Core" base="q15:BaseEntity">
+        <xs:sequence>
+          <xs:element name="_productReviewHelpfulnessEntries" nillable="true" type="tns:ArrayOfProductReviewHelpfulness" />
+          <xs:element name="_x003C_CreatedOnUtc_x003E_k__BackingField" type="xs:dateTime" />
+          <xs:element name="_x003C_CustomerId_x003E_k__BackingField" type="xs:int" />
+          <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Customers" name="_x003C_Customer_x003E_k__BackingField" nillable="true" type="q16:Customer" />
+          <xs:element name="_x003C_HelpfulNoTotal_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_HelpfulYesTotal_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_IsApproved_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_ProductId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Product_x003E_k__BackingField" nillable="true" type="tns:Product" />
+          <xs:element name="_x003C_Rating_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_ReviewText_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_Title_x003E_k__BackingField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductReview" nillable="true" type="tns:ProductReview" />
+  <xs:complexType name="ArrayOfProductReviewHelpfulness">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductReviewHelpfulness" nillable="true" type="tns:ProductReviewHelpfulness" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductReviewHelpfulness" nillable="true" type="tns:ArrayOfProductReviewHelpfulness" />
+  <xs:complexType name="ProductReviewHelpfulness">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q17="http://schemas.datacontract.org/2004/07/Nop.Core" base="q17:BaseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+          <xs:element minOccurs="0" name="ProductReview" nillable="true" type="tns:ProductReview" />
+          <xs:element minOccurs="0" name="ProductReviewId" type="xs:int" />
+          <xs:element minOccurs="0" name="WasHelpful" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductReviewHelpfulness" nillable="true" type="tns:ProductReviewHelpfulness" />
+  <xs:complexType name="ArrayOfProductSpecificationAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductSpecificationAttribute" nillable="true" type="tns:ProductSpecificationAttribute" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductSpecificationAttribute" nillable="true" type="tns:ArrayOfProductSpecificationAttribute" />
+  <xs:complexType name="ProductSpecificationAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q18="http://schemas.datacontract.org/2004/07/Nop.Core" base="q18:BaseEntity">
+        <xs:sequence>
+          <xs:element name="_x003C_AllowFiltering_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_AttributeTypeId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_CustomValue_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_DisplayOrder_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_ProductId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Product_x003E_k__BackingField" nillable="true" type="tns:Product" />
+          <xs:element name="_x003C_ShowOnProductPage_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_SpecificationAttributeOptionId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_SpecificationAttributeOption_x003E_k__BackingField" nillable="true" type="tns:SpecificationAttributeOption" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductSpecificationAttribute" nillable="true" type="tns:ProductSpecificationAttribute" />
+  <xs:complexType name="SpecificationAttributeOption">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q19="http://schemas.datacontract.org/2004/07/Nop.Core" base="q19:BaseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SpecificationAttribute" nillable="true" type="tns:SpecificationAttribute" />
+          <xs:element minOccurs="0" name="SpecificationAttributeId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SpecificationAttributeOption" nillable="true" type="tns:SpecificationAttributeOption" />
+  <xs:complexType name="SpecificationAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q20="http://schemas.datacontract.org/2004/07/Nop.Core" base="q20:BaseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SpecificationAttribute" nillable="true" type="tns:SpecificationAttribute" />
+  <xs:complexType name="ArrayOfProductTag">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductTag" nillable="true" type="tns:ProductTag" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductTag" nillable="true" type="tns:ArrayOfProductTag" />
+  <xs:complexType name="ProductTag">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q21="http://schemas.datacontract.org/2004/07/Nop.Core" base="q21:BaseEntity">
+        <xs:sequence>
+          <xs:element name="_products" nillable="true" type="tns:ArrayOfProduct" />
+          <xs:element name="_x003C_Name_x003E_k__BackingField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductTag" nillable="true" type="tns:ProductTag" />
+  <xs:complexType name="ArrayOfProductWarehouseInventory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductWarehouseInventory" nillable="true" type="tns:ProductWarehouseInventory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductWarehouseInventory" nillable="true" type="tns:ArrayOfProductWarehouseInventory" />
+  <xs:complexType name="ProductWarehouseInventory">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q22="http://schemas.datacontract.org/2004/07/Nop.Core" base="q22:BaseEntity">
+        <xs:sequence>
+          <xs:element name="_x003C_ProductId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Product_x003E_k__BackingField" nillable="true" type="tns:Product" />
+          <xs:element name="_x003C_ReservedQuantity_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_StockQuantity_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_WarehouseId_x003E_k__BackingField" type="xs:int" />
+          <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Shipping" name="_x003C_Warehouse_x003E_k__BackingField" nillable="true" type="q23:Warehouse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductWarehouseInventory" nillable="true" type="tns:ProductWarehouseInventory" />
+  <xs:complexType name="ArrayOfTierPrice">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TierPrice" nillable="true" type="tns:TierPrice" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTierPrice" nillable="true" type="tns:ArrayOfTierPrice" />
+  <xs:complexType name="TierPrice">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q24="http://schemas.datacontract.org/2004/07/Nop.Core" base="q24:BaseEntity">
+        <xs:sequence>
+          <xs:element name="_x003C_CustomerRoleId_x003E_k__BackingField" nillable="true" type="xs:int" />
+          <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Customers" name="_x003C_CustomerRole_x003E_k__BackingField" nillable="true" type="q25:CustomerRole" />
+          <xs:element name="_x003C_Price_x003E_k__BackingField" type="xs:decimal" />
+          <xs:element name="_x003C_ProductId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Product_x003E_k__BackingField" nillable="true" type="tns:Product" />
+          <xs:element name="_x003C_Quantity_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_StoreId_x003E_k__BackingField" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TierPrice" nillable="true" type="tns:TierPrice" />
 </xs:schema>

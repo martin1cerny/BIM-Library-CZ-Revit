@@ -32,6 +32,7 @@
     <MetadataFile FileName="BIMservice.wsdl" MetadataType="Wsdl" ID="3e745377-9a5b-4dee-8d6d-a1c40433a018" SourceId="1" SourceUrl="http://www.narodni-bim-knihovna.cz/BIMservice.svc?wsdl" />
     <MetadataFile FileName="BIMservice3.xsd" MetadataType="Schema" ID="ed89c640-0e5b-4b16-beb9-6089699201a8" SourceId="1" SourceUrl="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd1" />
     <MetadataFile FileName="BIMservice410.xsd" MetadataType="Schema" ID="40df66ff-903e-48ed-9699-1f66bfdaa1b2" SourceId="1" SourceUrl="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd5" />
+    <MetadataFile FileName="BIMservice412.xsd" MetadataType="Schema" ID="4ba67310-3b9e-45df-9aa5-fedac83b77d2" SourceId="1" SourceUrl="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd10" />
     <MetadataFile FileName="BIMservice1.xsd" MetadataType="Schema" ID="07b05163-e1ad-4928-a81b-d37c2c147cfe" SourceId="1" SourceUrl="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd2" />
     <MetadataFile FileName="BIMservice411.xsd" MetadataType="Schema" ID="bd62db42-ae48-4336-b0c5-2254b0fd2f83" SourceId="1" SourceUrl="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd6" />
   </Metadata>
