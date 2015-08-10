@@ -1,0 +1,13 @@
+﻿<Window x:Class="BimLibraryAddin.Dialogs.SearchDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             SizeToContent="WidthAndHeight" Icon="/BimLibraryAddin;component/Icons/logo.ico">
+    <Grid>
+        <DockPanel>
+            <Button DockPanel.Dock="Right" Name="btnSearch" Click="btnSearch_Click">Hledej</Button>
+            <TextBox MinWidth="300" Name="txtSearch"></TextBox>
+        </DockPanel>
+    </Grid>
+</Window>

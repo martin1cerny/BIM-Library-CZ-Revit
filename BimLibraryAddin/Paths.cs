@@ -5,6 +5,9 @@ namespace BimLibraryAddin
 {
     public static class Paths
     {
+
+        public static string BimServiceEndpoint { get { return "http://www.narodni-bim-knihovna.cz/BIMservice.svc"; } }
+
         public static string WorkingPath
         {
             get 

@@ -93,6 +93,13 @@
   <ItemGroup>
     <Compile Include="AddIns\Availability.cs" />
     <Compile Include="AddIns\ProductSearchAddIn.cs" />
+    <Compile Include="Dialogs\SearchDialog.xaml.cs">
+      <DependentUpon>SearchDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SearchResultsDialog.xaml.cs">
+      <DependentUpon>SearchResultsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ViewModels\ProductViewModel.cs" />
     <Compile Include="DummyReference.cs" />
     <Compile Include="ExceptionLog.cs" />
     <Compile Include="Extensions\ApplicationExtensions.cs" />
@@ -184,7 +191,16 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Dialogs\SearchDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\SearchResultsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\logo.ico" />
   </ItemGroup>
