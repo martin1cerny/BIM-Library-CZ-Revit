@@ -25,7 +25,7 @@
 ; Welcome page
 !insertmacro MUI_PAGE_WELCOME
 ; License page
-!insertmacro MUI_PAGE_LICENSE "License.txt"
+!insertmacro MUI_PAGE_LICENSE "License.md"
 ; Directory page
 !insertmacro MUI_PAGE_DIRECTORY
 ; Instfiles page
@@ -43,8 +43,6 @@
 
 ; MUI end ------
 
-!include "FileAssociation.nsh"
-
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 OutFile "Setup2015.exe"
 InstallDir "$PROGRAMFILES\BimLibraryAddin2015"
@@ -53,18 +51,13 @@ ShowInstDetails show
 ShowUnInstDetails show
 
 
+
 Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite try
   File "AddInRegistration\bin\Release2015\AddInRegistration.exe"
   File "AddInRegistration\bin\Release2015\BimLibraryAddin.dll"
   File "AddInRegistration\bin\Release2015\RevitAddInUtility.dll"
-  File "AddInRegistration\bin\Release2015\ValidationModel.dll"
-  File "BimLibrarySpecifications\bin\Release\BimLibrarySpecifications.exe"
-  
-  SetOutPath "$INSTDIR\Resources"
-  File "BimLibrarySpecifications\bin\Release\Resources\revit.ipspec"
-
   
   nsExec::Exec  "$INSTDIR\AddInRegistration.exe"
   Pop $0 ; The handle for the process
@@ -72,9 +65,7 @@ Section "MainSection" SEC01
 
   CreateDirectory "$SMPROGRAMS\BimLibrary\Addin 2015"
   CreateShortCut "$SMPROGRAMS\BimLibrary\Addin 2015\Registrovat add-in do Revitu.lnk" "$INSTDIR\AddInRegistration.exe"
-  CreateShortCut "$SMPROGRAMS\BimLibrary\Addin 2015\Specifikace.lnk" "$INSTDIR\BimLibrarySpecifications.exe"
-  
-  ${registerExtension} "$INSTDIR\BimLibrarySpecifications.exe" ".ipspec" "BimLibrary specification file"
+  CreateShortCut "$SMPROGRAMS\BimLibrary\Addin 2015\Odregistrovat add-in z Revitu.lnk" "$INSTDIR\AddInRegistration.exe -u"
 SectionEnd
 
 Section -AdditionalIcons
@@ -97,7 +88,7 @@ SectionEnd
 
 Function un.onUninstSuccess
   HideWindow
-  MessageBox MB_ICONINFORMATION|MB_OK "$(^Name) byl ˙spÏönÏ odstranÏn z Vaöeho poËÌtaËe. Restartujte Revit, pokud pr·vÏ bÏûÌ."
+  MessageBox MB_ICONINFORMATION|MB_OK "$(^Name) byl √∫spƒõ≈°nƒõ odstranƒõn z Va≈°eho poƒç√≠taƒçe. Restartujte Revit, pokud pr√°vƒõ bƒõ≈æ√≠."
 FunctionEnd
 
 
@@ -112,20 +103,15 @@ Section Uninstall
   Delete "$INSTDIR\RevitAddInUtility.dll"
   Delete "$INSTDIR\BimLibraryAddin.dll"
   Delete "$INSTDIR\AddInRegistration.exe"
-  Delete "$INSTDIR\ValidationModel.dll"
-  Delete "$INSTDIR\BimLibrarySpecifications.exe"
-  Delete "$INSTDIR\Resources\revit.ipspec"
 
   Delete "$SMPROGRAMS\BimLibrary\Addin 2015\Uninstall.lnk"
   Delete "$SMPROGRAMS\BimLibrary\Addin 2015\Website.lnk"
   Delete "$SMPROGRAMS\BimLibrary\Addin 2015\Registrovat add-in do Revitu.lnk"
+  Delete "$SMPROGRAMS\BimLibrary\Addin 2015\Odregistrovat add-in z Revitu.lnk"
   Delete "$SMPROGRAMS\BimLibrary\Addin 2015\Specifikace.lnk"
-  
-  RMDir "$SMPROGRAMS\BimLibrary\Addin 2015"
-  RMDir "$INSTDIR\Resources"
-  RMDir "$INSTDIR"
 
-  ${unregisterExtension} ".ipspec" "BimLibrary specification file"
+  RMDir "$SMPROGRAMS\BimLibrary\Addin 2015"
+  RMDir "$INSTDIR"
   
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
   DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
@@ -133,7 +119,7 @@ Section Uninstall
 SectionEnd
 
 
-;Makro pro test, zda Revit pr·vÏ nebÏûÌ
+;Makro pro test, zda Revit pr√°vƒõ nebƒõ≈æ√≠
 !define FindProc_FOUND 0
 !macro FindProc result processName
     ExecCmd::exec "tasklist /NH /FI $\"IMAGENAME eq ${processName}$\" | find /I $\"${processName}$\""
@@ -151,7 +137,7 @@ Function .onInit
   IntCmp $processFound FindProc_FOUND rvtRunning
         GoTo done
     rvtRunning:
-        MessageBox MB_OK|MB_ICONEXCLAMATION "Revit pr·vÏ bÏûÌ. Nejprve jej prosÌm zav¯ete." /SD IDOK
+        MessageBox MB_OK|MB_ICONEXCLAMATION "Revit pr√°vƒõ bƒõ≈æ√≠. Nejprve jej pros√≠m zav≈ôete." /SD IDOK
         Abort
     done:
 FunctionEnd
@@ -160,11 +146,11 @@ Function un.onInit
 !insertmacro MUI_UNGETLANGUAGE
     !insertmacro FindProc $processFound "Revit.exe"
 IntCmp $processFound FindProc_FOUND rvtRunning
-     MessageBox MB_ICONQUESTION|MB_YESNO|MB_DEFBUTTON2 "UrËitÏ chcete odebrat $(^Name) se vöemi souË·stmi?" IDYES +2
+     MessageBox MB_ICONQUESTION|MB_YESNO|MB_DEFBUTTON2 "Urƒçitƒõ chcete odebrat $(^Name) se v≈°emi souƒç√°stmi?" IDYES +2
      Abort
      GoTo done
    rvtRunning:
-     MessageBox MB_OK|MB_ICONEXCLAMATION "Revit pr·vÏ bÏûÌ. Nejprve jej prosÌm zav¯ete." /SD IDOK
+     MessageBox MB_OK|MB_ICONEXCLAMATION "Revit pr√°vƒõ bƒõ≈æ√≠. Nejprve jej pros√≠m zav≈ôete." /SD IDOK
      Abort
     done:
 FunctionEnd
