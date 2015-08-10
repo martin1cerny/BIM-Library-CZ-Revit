@@ -77,6 +77,7 @@ For the purpose of this agreement, Software shall mean a computer program (a gro
 Anyone who uses Software becomes **User**. User shall abide by this licence agreement.
 
 BRNO UNIVERSITY OF TECHNOLOGY GRANTS TO USER A LICENCE TO USE SOFTWARE ON THE FOLLOWING TERMS AND CONDITIONS:
+
 1. User may use Software for any purpose, commercial or non-commercial, without a need to pay any li-cence fee.
 
 2. User may copy and distribute verbatim copies of executable Software with source code as he/she re-ceived it, in any medium, provided that User conspicuously and appropriately publishes on each copy an appropriate copyright notice and disclaimer of warranty; keeps intact all the notices that refer to this li-cence and to the absence of any warranty; and give any other recipients of Software a copy of this licence along with Software. User may charge a fee for the physical act of transferring a copy, and may offer war-ranty protection in exchange for a fee.
@@ -84,8 +85,11 @@ BRNO UNIVERSITY OF TECHNOLOGY GRANTS TO USER A LICENCE TO USE SOFTWARE ON THE FO
 3. User may modify his/her copy or copies of Software or any portion of it, thus forming a work based on Software, and copy and distribute such modifications or work, provided that User clearly states this work is modified Software. These modifications or work based on software may be distributed only under the terms of section 2 of this licence agreement, regardless if it is distributed alone or together with other work. Previous sentence does not apply to mere aggregation of another work not based on software with Software (or with a work based on software) on a volume of a storage or distribution medium.
 
 4. User shall accompany copies of Software or work based on software in object or executable form with:
+  
   a) the complete corresponding machine-readable source code, which must be distributed on a medium customarily used for software interchange; or,
+  
   b) written offer, valid for at least three years, to give any third party, for a charge no more than actual cost of physically performing source distribution, a complete machine-readable copy of the corres-ponding source code, to be distributed on a medium customarily used for software interchange; or,
+  
   c) the information User received as to the offer to distribute corresponding source code. (This alterna-tive is allowed only for noncommercial distribution and only if User received the program in objects code or executable form with such an offer, in accord with subsection b above.)
 
 5. User may not copy, modify, grant sublicences or distribute Software in any other way than expressly pro-vided for in this licence agreement. Any other copying, modifying, granting of sublicences or distribution of Software is illegal and will automatically result in termination of the rights granted by this licence. This does not affect rights of third parties acquired in good faith, as long as they abide by the terms and condi-tions of this licence agreement.
