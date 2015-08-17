@@ -19,6 +19,8 @@
     <OutputPath>bin\Debug2016\</OutputPath>
     <DefineConstants>TRACE;DEBUG;Revit2016</DefineConstants>
     <Prefer32Bit>false</Prefer32Bit>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release2016|AnyCPU' ">
     <OutputPath>bin\Release2016\</OutputPath>

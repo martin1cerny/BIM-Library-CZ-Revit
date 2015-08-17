@@ -35,7 +35,7 @@ namespace BimLibraryAddin.AddIns
             var searchString = dlg.SearchText;
 
             //create proxy client for a BIM Library services
-            var client = new BimLibraryService.BIMserviceClient(new BasicHttpBinding(BasicHttpSecurityMode.None),
+            var client = new BimLibraryService.BIMserviceClient(new BasicHttpBinding(BasicHttpSecurityMode.None) { MaxReceivedMessageSize = 2147483647 },
                 new EndpointAddress(Paths.BimServiceEndpoint));
 
             //many exceptions may occure during service operation
@@ -43,7 +43,7 @@ namespace BimLibraryAddin.AddIns
             {
                 client.Open();
                 //search for a Revit products
-                var products = client.GetProductByName(searchString);
+                var products = client.GetProductByName(searchString, true);
 
                 if (products.Length == 0)
                 {

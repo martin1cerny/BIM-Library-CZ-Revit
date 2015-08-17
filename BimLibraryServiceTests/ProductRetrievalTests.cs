@@ -22,10 +22,10 @@ namespace BimLibraryServiceTests
         [TestMethod]
         public void ProductSearch()
         {
-            var client = new BimLibraryService.BIMserviceClient(new BasicHttpBinding(BasicHttpSecurityMode.None),
+            var client = new BimLibraryService.BIMserviceClient(new BasicHttpBinding(BasicHttpSecurityMode.None) { MaxReceivedMessageSize = 2147483647},
                 new EndpointAddress("http://www.narodni-bim-knihovna.cz/BIMservice.svc"));
             client.Open();
-            var products = client.GetProductByName("test");
+            var products = client.GetProductByName("zzz", true);
 
             foreach (var product in products)
             {
@@ -35,6 +35,7 @@ namespace BimLibraryServiceTests
                 var usDeleted = product.Deletedk__BackingField;
                 var downloadId = product.DownloadIdk__BackingField;
                 var image = GetImages(product).FirstOrDefault();
+                var cats = product._productCategories;
             }
 
 

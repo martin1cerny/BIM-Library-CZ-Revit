@@ -18,6 +18,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="withPictures" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -59,17 +60,33 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetZip">
+  <xs:element name="GetZipById">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="productId" type="xs:int" />
+        <xs:element minOccurs="0" name="variant" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetZipResponse">
+  <xs:element name="GetZipByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.microsoft.com/Message" name="GetZipResult" type="q4:StreamBody" />
+        <xs:element xmlns:q4="http://schemas.microsoft.com/Message" name="GetZipByIdResult" type="q4:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZipByName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="variant" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZipByNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.microsoft.com/Message" name="GetZipByNameResult" type="q5:StreamBody" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

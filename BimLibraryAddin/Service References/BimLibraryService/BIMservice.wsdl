@@ -39,11 +39,17 @@
   <wsdl:message name="IBIMservice_GetAllCategoriesByParentCategoryId_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllCategoriesByParentCategoryIdResponse" />
   </wsdl:message>
-  <wsdl:message name="IBIMservice_GetZip_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetZip" />
+  <wsdl:message name="IBIMservice_GetZipById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZipById" />
   </wsdl:message>
-  <wsdl:message name="IBIMservice_GetZip_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetZipResponse" />
+  <wsdl:message name="IBIMservice_GetZipById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZipByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBIMservice_GetZipByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZipByName" />
+  </wsdl:message>
+  <wsdl:message name="IBIMservice_GetZipByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZipByNameResponse" />
   </wsdl:message>
   <wsdl:portType name="IBIMservice">
     <wsdl:operation name="Test">
@@ -62,9 +68,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBIMservice/GetAllCategoriesByParentCategoryId" message="tns:IBIMservice_GetAllCategoriesByParentCategoryId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBIMservice/GetAllCategoriesByParentCategoryIdResponse" message="tns:IBIMservice_GetAllCategoriesByParentCategoryId_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetZip">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBIMservice/GetZip" message="tns:IBIMservice_GetZip_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBIMservice/GetZipResponse" message="tns:IBIMservice_GetZip_OutputMessage" />
+    <wsdl:operation name="GetZipById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBIMservice/GetZipById" message="tns:IBIMservice_GetZipById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBIMservice/GetZipByIdResponse" message="tns:IBIMservice_GetZipById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZipByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBIMservice/GetZipByName" message="tns:IBIMservice_GetZipByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBIMservice/GetZipByNameResponse" message="tns:IBIMservice_GetZipByName_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBIMservice" type="tns:IBIMservice">
@@ -105,8 +115,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetZip">
-      <soap:operation soapAction="http://tempuri.org/IBIMservice/GetZip" style="document" />
+    <wsdl:operation name="GetZipById">
+      <soap:operation soapAction="http://tempuri.org/IBIMservice/GetZipById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZipByName">
+      <soap:operation soapAction="http://tempuri.org/IBIMservice/GetZipByName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
