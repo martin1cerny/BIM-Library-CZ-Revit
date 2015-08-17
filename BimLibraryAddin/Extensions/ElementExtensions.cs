@@ -111,8 +111,17 @@ namespace Autodesk.Revit.DB
                 myDefinition = myGroup.Definitions.get_Item(parameterName);
                 if (myDefinition == null)
                 {
+#if Revit2016
+                    var options = new ExternalDefinitionCreationOptions(parameterName, paramType)
+                    {
+                        UserModifiable = true,
+                        Visible = true,
+                        GUID = Guid.NewGuid()
+                    };
+                    myDefinition = myGroup.Definitions.Create(options);
+#else
                     myDefinition = myGroup.Definitions.Create(parameterName, paramType);
-                    
+#endif               
                 }
             }
             
@@ -190,7 +199,7 @@ namespace Autodesk.Revit.DB
         /// <returns>Existing or new parameter</returns>
         public static Parameter GetParameter(this Element element, ParameterType paramType, string parameterName, BuiltInParameterGroup group)
         {
-            Parameter parameter = element.get_Parameter(parameterName);
+            Parameter parameter = element.GetParameters(parameterName).FirstOrDefault();
             if (parameter != null)
             {
                 //check type and throw error if the type is different
@@ -219,13 +228,13 @@ namespace Autodesk.Revit.DB
                 throw new Exception("Parameter creation failed.");
             }
 
-            parameter = element.get_Parameter(parameterName);
+            parameter = element.GetParameters(parameterName).FirstOrDefault();
             return parameter;
         }
 
         public static string GetParameter_string(this Element element, string parameterName)
         {
-            Parameter parameter = element.get_Parameter(parameterName);
+            Parameter parameter = element.GetParameters(parameterName).FirstOrDefault();
             if (parameter != null)
             {
                 return parameter.AsString();
@@ -235,7 +244,7 @@ namespace Autodesk.Revit.DB
 
         public static int? GetParameter_integer(this Element element, string parameterName)
         {
-            Parameter parameter = element.get_Parameter(parameterName);
+            Parameter parameter = element.GetParameters(parameterName).FirstOrDefault();
             if (parameter != null)
             {
                 return parameter.AsInteger();
@@ -245,7 +254,7 @@ namespace Autodesk.Revit.DB
 
         public static double? GetParameter_double(this Element element, string parameterName)
         {
-            Parameter parameter = element.get_Parameter(parameterName);
+            Parameter parameter = element.GetParameters(parameterName).FirstOrDefault();
             if (parameter != null)
             {
                 return parameter.AsDouble();
@@ -255,33 +264,10 @@ namespace Autodesk.Revit.DB
 
         public static bool? GetParameter_bool(this Element element, string parameterName)
         {
-            Parameter parameter = element.get_Parameter(parameterName);
+            Parameter parameter = element.GetParameters(parameterName).FirstOrDefault();
             if (parameter != null)
             {
                 return parameter.AsInteger() == 0;
-            }
-            return null;
-        }
-
-     
-     
-
-     
-        public static void SetDescription(this Element element, string description)
-        {
-            Parameter parameter = element.get_Parameter("Description");
-            if (parameter != null)
-            {
-                parameter.Set(description);
-            }
-        }
-
-        public static string GetDescription(this Element element)
-        {
-            Parameter parameter = element.get_Parameter("Description");
-            if (parameter != null)
-            {
-                return parameter.AsString();
             }
             return null;
         }

@@ -86,7 +86,14 @@ namespace Autodesk.Revit.DB
                 myDefinition = myGroup.Definitions.get_Item(parameterName);
                 if (myDefinition == null)
                 {
-#if Revit2015 || Revit2016
+#if Revit2016
+                    var options = new ExternalDefinitionCreationOptions(parameterName, paramType)
+                    {
+                        UserModifiable = editable,
+                        Visible = visible,
+                        GUID = id
+                    };
+#elif Revit2015
                     var options = new ExternalDefinitonCreationOptions(parameterName, paramType) { 
                         UserModifiable = editable, 
                         Visible = visible, 
@@ -206,7 +213,15 @@ namespace Autodesk.Revit.DB
                 myDefinition = myGroup.Definitions.get_Item(parameterName);
                 if (myDefinition == null)
                 {
-#if Revit2014 || Revit2015 || Revit2016
+#if Revit2016
+                    var options = new ExternalDefinitionCreationOptions(parameterName, paramType) 
+                    { 
+                    GUID = id, Visible = visible
+                    };
+
+                    myDefinition = myGroup.Definitions.Create(options);
+
+#elif Revit2014 || Revit2015
                     myDefinition = myGroup.Definitions.Create(parameterName, paramType, visible, ref id);
 #else
                     myDefinition = myGroup.Definitions.Create(parameterName, paramType);
