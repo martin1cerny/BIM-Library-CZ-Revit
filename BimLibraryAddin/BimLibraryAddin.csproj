@@ -66,20 +66,20 @@
   <ItemGroup>
     <!-- Revit 2015 -->
     <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2015' Or '$(Configuration)' == 'Debug2015'">
-      <HintPath>c:\Program Files\Autodesk\Revit 2015\RevitAPI.dll</HintPath>
+      <HintPath>Libs\2015\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2015' Or '$(Configuration)' == 'Debug2015'">
-      <HintPath>c:\Program Files\Autodesk\Revit 2015\RevitAPIUI.dll</HintPath>
+      <HintPath>Libs\2015\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <!-- Revit 2016 -->
     <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2016' Or '$(Configuration)' == 'Debug2016'">
-      <HintPath>c:\Program Files\Autodesk\Revit 2016\RevitAPI.dll</HintPath>
+      <HintPath>Libs\2016\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2016' Or '$(Configuration)' == 'Debug2016'">
-      <HintPath>c:\Program Files\Autodesk\Revit 2016\RevitAPIUI.dll</HintPath>
+      <HintPath>Libs\2016\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />

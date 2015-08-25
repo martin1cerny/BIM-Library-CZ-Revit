@@ -36,6 +36,14 @@ namespace BimLibraryAddin.Dialogs.ViewModels
 
         public BitmapImage FirstImage { get { return Images.FirstOrDefault(); } }
 
+        public string Classifications
+        {
+            get
+            {
+                return _product._productCategories.Select(c => c.Categoryk__BackingField.Name).Aggregate("", (s, c) => s + "\n" + c);
+            }
+        }
+
         private BitmapImage GetImage(Picture picture)
         {
             var type = picture.MimeType;

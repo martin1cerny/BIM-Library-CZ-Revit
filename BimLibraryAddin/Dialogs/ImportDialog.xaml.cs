@@ -64,6 +64,9 @@ namespace BimLibraryAddin.Dialogs
             string errMsg = "";
             var errLog = new ExceptionLog();
 
+            //use one client for all ZIP retrievals
+            var client = ServiceHelper.GetNewClient();
+
             foreach (var product in products)
             {
                 var tempDir = System.IO.Path.GetTempPath();
@@ -73,19 +76,8 @@ namespace BimLibraryAddin.Dialogs
                 try
                 {
                     //get zipped data from the client
-                    var client = ServiceHelper.GetNewClient();
                     using (var zipStream = client.GetZipById(product.Id, RevitVariants.Variant))
                     {
-#if DEBUG
-                        //save the file to desktop
-                        //var desktopFilePath = System.IO.Path.Combine(
-                        //    Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-                        //    "test.zip");
-                        //using (var testFile = System.IO.File.Create(desktopFilePath))
-                        //{
-                        //    zipStream.CopyTo(testFile);
-                        //    testFile.Close();
-                        //}
                         using (var zip = new ZipArchive(zipStream, ZipArchiveMode.Read))
                         {
                             var familyEntry = zip.Entries.FirstOrDefault(entry => entry.Name.EndsWith(".rfa", StringComparison.InvariantCultureIgnoreCase));
@@ -107,7 +99,6 @@ namespace BimLibraryAddin.Dialogs
                                 }
                             }
                         }
-#endif
                     }
 
 

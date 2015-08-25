@@ -3,8 +3,7 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-            mc:Ignorable="d" 
-            d:DesignHeight="300" d:DesignWidth="300" Icon="/BimLibraryAddin;component/Icons/logo.ico"
+            Height="300" Width="800" Icon="/BimLibraryAddin;component/Icons/logo.ico"
             WindowStartupLocation="CenterScreen"
             Title="Nalezené výrobky"
             Name="self">
@@ -29,7 +28,7 @@
                   Name="dgProducts"
                   >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Název" Binding="{Binding Name}" MinWidth="80" MaxWidth="200"/>
+                <DataGridTextColumn Header="Název" Binding="{Binding Name}" MinWidth="100" MaxWidth="200"/>
                 <DataGridTemplateColumn Header="Obrázek" MaxWidth="120">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -44,8 +43,15 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
+                <DataGridTextColumn Header="Klasifikace" Binding="{Binding Classifications}" MinWidth="100" MaxWidth="200">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="1" Width="80" HorizontalAlignment="Right" Click="btnImport_Click" Name="btnImport">Importovat</Button>
+        <Button Grid.Row="1" Width="100" Margin="8" Padding="3" HorizontalAlignment="Right" Click="btnImport_Click" Name="btnImport">Importovat</Button>
     </Grid>
 </Window>

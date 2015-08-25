@@ -28,7 +28,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <DockPanel>
+        <DockPanel Margin="15">
             <Button DockPanel.Dock="Right" Name="btnSearch" Click="btnSearch_Click" IsDefault="True">Hledej</Button>
             <TextBox MinWidth="300" Name="txtSearch"></TextBox>
         </DockPanel>
