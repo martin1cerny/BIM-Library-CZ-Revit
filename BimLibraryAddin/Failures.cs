@@ -7,21 +7,18 @@ namespace BimLibraryAddin
     public static class Failures
     {
 
-        #region Data validation failures
-        #endregion
-
         #region Other failures
-        public static FailureDefinitionId GeneralFailure;
+        public static FailureDefinitionId GeneralFailureId;
+        public static FailureDefinition GeneralFailure;
 
         #endregion
 
         public static void RegisterFailures()
         {
 
-            GeneralFailure = new FailureDefinitionId(new Guid("14281B4C-0AD0-4654-88DD-68E2021F4131"));
-            FailureDefinition.CreateFailureDefinition(GeneralFailure, FailureSeverity.Error,
+            GeneralFailureId = new FailureDefinitionId(new Guid("14281B4C-0AD0-4654-88DD-68E2021F4131"));
+            GeneralFailure = FailureDefinition.CreateFailureDefinition(GeneralFailureId, FailureSeverity.Error,
                 "Jejda, někde se stala chyba. Snad se to již nebude opakovat. Podívejte se prosím do souboru "+ Paths.ErrorFile);
-
         }
 
         public static void PostFailure(Document document, Exception exception)
@@ -35,7 +32,7 @@ namespace BimLibraryAddin
             log.Add(exceptions);
             log.SaveToFile(Paths.ErrorFile);
 
-            var msg = new FailureMessage(GeneralFailure);
+            var msg = new FailureMessage(GeneralFailureId);
             document.PostFailure(msg);
         }
 

@@ -14,9 +14,19 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="Model3D" nillable="true" type="tns:Model3D" />
-  <xs:complexType name="Picture">
+  <xs:complexType name="ModelVariant">
     <xs:complexContent mixed="false">
       <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/Nop.Core" base="q2:BaseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ModelVariant" nillable="true" type="tns:ModelVariant" />
+  <xs:complexType name="Picture">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Nop.Core" base="q3:BaseEntity">
         <xs:sequence>
           <xs:element minOccurs="0" name="IsNew" type="xs:boolean" />
           <xs:element minOccurs="0" name="MimeType" nillable="true" type="xs:string" />
@@ -27,4 +37,10 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="Picture" nillable="true" type="tns:Picture" />
+  <xs:complexType name="ArrayOfModelVariant">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ModelVariant" nillable="true" type="tns:ModelVariant" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfModelVariant" nillable="true" type="tns:ArrayOfModelVariant" />
 </xs:schema>

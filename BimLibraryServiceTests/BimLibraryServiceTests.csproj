@@ -76,6 +76,9 @@
     <None Include="Service References\BimLibraryService\BimLibraryServiceTests.BimLibraryService.Category.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\BimLibraryService\BimLibraryServiceTests.BimLibraryService.ModelVariant.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\BimLibraryService\BimLibraryServiceTests.BimLibraryService.Product.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

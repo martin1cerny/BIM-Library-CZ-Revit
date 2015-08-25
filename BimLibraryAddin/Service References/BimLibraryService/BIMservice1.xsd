@@ -22,6 +22,7 @@
           <xs:element name="_productCategories" nillable="true" type="tns:ArrayOfProductCategory" />
           <xs:element name="_productManufacturers" nillable="true" type="tns:ArrayOfProductManufacturer" />
           <xs:element name="_productModel3Ds" nillable="true" type="tns:ArrayOfProductModel3D" />
+          <xs:element name="_productModelVariants" nillable="true" type="tns:ArrayOfProductModelVariant" />
           <xs:element name="_productPictures" nillable="true" type="tns:ArrayOfProductPicture" />
           <xs:element name="_productReviews" nillable="true" type="tns:ArrayOfProductReview" />
           <xs:element name="_productSpecificationAttributes" nillable="true" type="tns:ArrayOfProductSpecificationAttribute" />
@@ -362,6 +363,25 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="ProductModel3D" nillable="true" type="tns:ProductModel3D" />
+  <xs:complexType name="ArrayOfProductModelVariant">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductModelVariant" nillable="true" type="tns:ProductModelVariant" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductModelVariant" nillable="true" type="tns:ArrayOfProductModelVariant" />
+  <xs:complexType name="ProductModelVariant">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/Nop.Core" base="q13:BaseEntity">
+        <xs:sequence>
+          <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Media" minOccurs="0" name="ModelVariant" nillable="true" type="q14:ModelVariant" />
+          <xs:element minOccurs="0" name="ModelVariantId" type="xs:int" />
+          <xs:element minOccurs="0" name="Product" nillable="true" type="tns:Product" />
+          <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductModelVariant" nillable="true" type="tns:ProductModelVariant" />
   <xs:complexType name="ArrayOfProductPicture">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductPicture" nillable="true" type="tns:ProductPicture" />
@@ -370,11 +390,11 @@
   <xs:element name="ArrayOfProductPicture" nillable="true" type="tns:ArrayOfProductPicture" />
   <xs:complexType name="ProductPicture">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/Nop.Core" base="q13:BaseEntity">
+      <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/Nop.Core" base="q15:BaseEntity">
         <xs:sequence>
           <xs:element name="_x003C_DisplayOrder_x003E_k__BackingField" type="xs:int" />
           <xs:element name="_x003C_PictureId_x003E_k__BackingField" type="xs:int" />
-          <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Media" name="_x003C_Picture_x003E_k__BackingField" nillable="true" type="q14:Picture" />
+          <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Media" name="_x003C_Picture_x003E_k__BackingField" nillable="true" type="q16:Picture" />
           <xs:element name="_x003C_ProductId_x003E_k__BackingField" type="xs:int" />
           <xs:element name="_x003C_Product_x003E_k__BackingField" nillable="true" type="tns:Product" />
         </xs:sequence>
@@ -390,12 +410,12 @@
   <xs:element name="ArrayOfProductReview" nillable="true" type="tns:ArrayOfProductReview" />
   <xs:complexType name="ProductReview">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/Nop.Core" base="q15:BaseEntity">
+      <xs:extension xmlns:q17="http://schemas.datacontract.org/2004/07/Nop.Core" base="q17:BaseEntity">
         <xs:sequence>
           <xs:element name="_productReviewHelpfulnessEntries" nillable="true" type="tns:ArrayOfProductReviewHelpfulness" />
           <xs:element name="_x003C_CreatedOnUtc_x003E_k__BackingField" type="xs:dateTime" />
           <xs:element name="_x003C_CustomerId_x003E_k__BackingField" type="xs:int" />
-          <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Customers" name="_x003C_Customer_x003E_k__BackingField" nillable="true" type="q16:Customer" />
+          <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Customers" name="_x003C_Customer_x003E_k__BackingField" nillable="true" type="q18:Customer" />
           <xs:element name="_x003C_HelpfulNoTotal_x003E_k__BackingField" type="xs:int" />
           <xs:element name="_x003C_HelpfulYesTotal_x003E_k__BackingField" type="xs:int" />
           <xs:element name="_x003C_IsApproved_x003E_k__BackingField" type="xs:boolean" />
@@ -417,7 +437,7 @@
   <xs:element name="ArrayOfProductReviewHelpfulness" nillable="true" type="tns:ArrayOfProductReviewHelpfulness" />
   <xs:complexType name="ProductReviewHelpfulness">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q17="http://schemas.datacontract.org/2004/07/Nop.Core" base="q17:BaseEntity">
+      <xs:extension xmlns:q19="http://schemas.datacontract.org/2004/07/Nop.Core" base="q19:BaseEntity">
         <xs:sequence>
           <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
           <xs:element minOccurs="0" name="ProductReview" nillable="true" type="tns:ProductReview" />
@@ -436,7 +456,7 @@
   <xs:element name="ArrayOfProductSpecificationAttribute" nillable="true" type="tns:ArrayOfProductSpecificationAttribute" />
   <xs:complexType name="ProductSpecificationAttribute">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q18="http://schemas.datacontract.org/2004/07/Nop.Core" base="q18:BaseEntity">
+      <xs:extension xmlns:q20="http://schemas.datacontract.org/2004/07/Nop.Core" base="q20:BaseEntity">
         <xs:sequence>
           <xs:element name="_x003C_AllowFiltering_x003E_k__BackingField" type="xs:boolean" />
           <xs:element name="_x003C_AttributeTypeId_x003E_k__BackingField" type="xs:int" />
@@ -454,7 +474,7 @@
   <xs:element name="ProductSpecificationAttribute" nillable="true" type="tns:ProductSpecificationAttribute" />
   <xs:complexType name="SpecificationAttributeOption">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q19="http://schemas.datacontract.org/2004/07/Nop.Core" base="q19:BaseEntity">
+      <xs:extension xmlns:q21="http://schemas.datacontract.org/2004/07/Nop.Core" base="q21:BaseEntity">
         <xs:sequence>
           <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
@@ -467,7 +487,7 @@
   <xs:element name="SpecificationAttributeOption" nillable="true" type="tns:SpecificationAttributeOption" />
   <xs:complexType name="SpecificationAttribute">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q20="http://schemas.datacontract.org/2004/07/Nop.Core" base="q20:BaseEntity">
+      <xs:extension xmlns:q22="http://schemas.datacontract.org/2004/07/Nop.Core" base="q22:BaseEntity">
         <xs:sequence>
           <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
@@ -484,7 +504,7 @@
   <xs:element name="ArrayOfProductTag" nillable="true" type="tns:ArrayOfProductTag" />
   <xs:complexType name="ProductTag">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q21="http://schemas.datacontract.org/2004/07/Nop.Core" base="q21:BaseEntity">
+      <xs:extension xmlns:q23="http://schemas.datacontract.org/2004/07/Nop.Core" base="q23:BaseEntity">
         <xs:sequence>
           <xs:element name="_products" nillable="true" type="tns:ArrayOfProduct" />
           <xs:element name="_x003C_Name_x003E_k__BackingField" nillable="true" type="xs:string" />
@@ -501,14 +521,14 @@
   <xs:element name="ArrayOfProductWarehouseInventory" nillable="true" type="tns:ArrayOfProductWarehouseInventory" />
   <xs:complexType name="ProductWarehouseInventory">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q22="http://schemas.datacontract.org/2004/07/Nop.Core" base="q22:BaseEntity">
+      <xs:extension xmlns:q24="http://schemas.datacontract.org/2004/07/Nop.Core" base="q24:BaseEntity">
         <xs:sequence>
           <xs:element name="_x003C_ProductId_x003E_k__BackingField" type="xs:int" />
           <xs:element name="_x003C_Product_x003E_k__BackingField" nillable="true" type="tns:Product" />
           <xs:element name="_x003C_ReservedQuantity_x003E_k__BackingField" type="xs:int" />
           <xs:element name="_x003C_StockQuantity_x003E_k__BackingField" type="xs:int" />
           <xs:element name="_x003C_WarehouseId_x003E_k__BackingField" type="xs:int" />
-          <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Shipping" name="_x003C_Warehouse_x003E_k__BackingField" nillable="true" type="q23:Warehouse" />
+          <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Shipping" name="_x003C_Warehouse_x003E_k__BackingField" nillable="true" type="q25:Warehouse" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -522,10 +542,10 @@
   <xs:element name="ArrayOfTierPrice" nillable="true" type="tns:ArrayOfTierPrice" />
   <xs:complexType name="TierPrice">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q24="http://schemas.datacontract.org/2004/07/Nop.Core" base="q24:BaseEntity">
+      <xs:extension xmlns:q26="http://schemas.datacontract.org/2004/07/Nop.Core" base="q26:BaseEntity">
         <xs:sequence>
           <xs:element name="_x003C_CustomerRoleId_x003E_k__BackingField" nillable="true" type="xs:int" />
-          <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Customers" name="_x003C_CustomerRole_x003E_k__BackingField" nillable="true" type="q25:CustomerRole" />
+          <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Customers" name="_x003C_CustomerRole_x003E_k__BackingField" nillable="true" type="q27:CustomerRole" />
           <xs:element name="_x003C_Price_x003E_k__BackingField" type="xs:decimal" />
           <xs:element name="_x003C_ProductId_x003E_k__BackingField" type="xs:int" />
           <xs:element name="_x003C_Product_x003E_k__BackingField" nillable="true" type="tns:Product" />

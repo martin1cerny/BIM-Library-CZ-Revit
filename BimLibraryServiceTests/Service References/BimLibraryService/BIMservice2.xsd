@@ -2,6 +2,7 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" />
   <xs:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd10" namespace="http://schemas.microsoft.com/Message" />
+  <xs:import schemaLocation="http://www.narodni-bim-knihovna.cz/BIMservice.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Media" />
   <xs:element name="Test">
     <xs:complexType>
       <xs:sequence />
@@ -64,7 +65,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="productId" type="xs:int" />
-        <xs:element minOccurs="0" name="variant" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="modelVariantName" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -75,18 +76,45 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetZipByName">
+  <xs:element name="GetModelVariantsForProduct">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="variant" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetZipByNameResponse">
+  <xs:element name="GetModelVariantsForProductResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.microsoft.com/Message" name="GetZipByNameResult" type="q5:StreamBody" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Media" minOccurs="0" name="GetModelVariantsForProductResult" nillable="true" type="q5:ArrayOfModelVariant" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllModelVariants">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllModelVariantsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Media" minOccurs="0" name="GetAllModelVariantsResult" nillable="true" type="q6:ArrayOfModelVariant" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductByNameWithModelVariant">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="withPictures" type="xs:boolean" />
+        <xs:element minOccurs="0" name="modelVariantName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductByNameWithModelVariantResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" minOccurs="0" name="GetProductByNameWithModelVariantResult" nillable="true" type="q7:ArrayOfProduct" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

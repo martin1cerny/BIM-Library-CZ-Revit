@@ -9,6 +9,8 @@ using BimLibraryAddin.Dialogs;
 using BimLibraryAddin.Extensions;
 using BimLibraryAddin.Dialogs.ViewModels;
 using Autodesk.Revit.Attributes;
+using BimLibraryAddin.Helpers;
+using Autodesk.Revit.DB;
 
 namespace BimLibraryAddin.AddIns
 {
@@ -24,6 +26,11 @@ namespace BimLibraryAddin.AddIns
             AddInApplication.Used++;
 #endif
 
+            var document = commandData.Application.ActiveUIDocument.Document;
+            if (document == null)
+                //this should never happen as long as the availability class is applied correctly to the application
+                throw new Exception("There is no document available");
+
             //show UI
             var dlg = new SearchDialog();
             var handle = new RevitHandle();
@@ -35,16 +42,15 @@ namespace BimLibraryAddin.AddIns
             var searchString = dlg.SearchText;
 
             //create proxy client for a BIM Library services
-            var client = new BimLibraryService.BIMserviceClient(new BasicHttpBinding(BasicHttpSecurityMode.None) { MaxReceivedMessageSize = 2147483647 },
-                new EndpointAddress(Paths.BimServiceEndpoint));
+            var client = ServiceHelper.GetNewClient();
 
             //many exceptions may occure during service operation
             try
             {
                 client.Open();
-                //search for a Revit products
-                var products = client.GetProductByName(searchString, true);
-
+                //search for Revit products
+                var products = client.GetProductByNameWithModelVariant(searchString, true, RevitVariants.Variant);
+      
                 if (products.Length == 0)
                 {
                     TaskDialog.Show("Produkt nenalezen", "Nebyl nalezen žádný produkt odpovídající zadání.");
@@ -52,13 +58,27 @@ namespace BimLibraryAddin.AddIns
                     return Execute(commandData, ref message, elements);
                 }
 
-                //show result in a dialog where user can download the object into his project
-                var resultsDlg = new SearchResultsDialog();
-                handle.SetAsOwnerTo(resultsDlg);
-                resultsDlg.Products = products.Select(p => new ProductViewModel(p));
-                resultsDlg.ShowDialog();
 
+                using (var txn = new Transaction(document, "Import knihovních objektů"))
+                {
+                    txn.Start();
 
+                    //show result in a dialog where user can download the object into his project
+                    var resultsDlg = new ImportDialog(document);
+                    handle.SetAsOwnerTo(resultsDlg);
+                    resultsDlg.Products = products.Select(p => new ProductViewModel(p));
+
+                    if (resultsDlg.ShowDialog() == true)
+                    {
+                        txn.Commit();
+
+                        //if anything imported promt user to place it (the first symbol from last family)
+                        if (resultsDlg.LastSymbol != null)
+                            commandData.Application.ActiveUIDocument.PromptForFamilyInstancePlacement(resultsDlg.LastSymbol);
+                    }
+                    else
+                        txn.RollBack();
+                }
             }
             catch (FaultException customFaultEx)
             {

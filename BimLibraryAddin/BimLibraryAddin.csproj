@@ -11,6 +11,9 @@
     <RootNamespace>BimLibraryAddin</RootNamespace>
     <AssemblyName>BimLibraryAddin</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DebugEngines>
+      {351668CC-8477-4fbf-BFE3-5F1006E4DB1F}
+    </DebugEngines>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -23,6 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
     <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release2016|AnyCPU' ">
     <OutputPath>bin\Release2016\</OutputPath>
@@ -102,8 +106,8 @@
     <Compile Include="Dialogs\SearchDialog.xaml.cs">
       <DependentUpon>SearchDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\SearchResultsDialog.xaml.cs">
-      <DependentUpon>SearchResultsDialog.xaml</DependentUpon>
+    <Compile Include="Dialogs\ImportDialog.xaml.cs">
+      <DependentUpon>ImportDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ViewModels\ProductViewModel.cs" />
     <Compile Include="DummyReference.cs" />
@@ -116,6 +120,7 @@
     <Compile Include="Failures.cs" />
     <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="AddInApplication.cs" />
+    <Compile Include="Helpers\ServiceHelper.cs" />
     <Compile Include="Paths.cs" />
     <Compile Include="ProjectSettingsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,6 +129,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RevitVariants.cs" />
     <Compile Include="Service References\BimLibraryService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -133,6 +139,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Service References\BimLibraryService\BimLibraryAddin.BimLibraryService.Category1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BimLibraryService\BimLibraryAddin.BimLibraryService.ModelVariant.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\BimLibraryService\BimLibraryAddin.BimLibraryService.Product.datasource">
@@ -209,7 +218,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\SearchResultsDialog.xaml">
+    <Page Include="Dialogs\ImportDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -25,7 +25,7 @@ namespace BimLibraryServiceTests
             var client = new BimLibraryService.BIMserviceClient(new BasicHttpBinding(BasicHttpSecurityMode.None) { MaxReceivedMessageSize = 2147483647},
                 new EndpointAddress("http://www.narodni-bim-knihovna.cz/BIMservice.svc"));
             client.Open();
-            var products = client.GetProductByName("zzz", true);
+            var products = client.GetProductByName("martin", true);
 
             foreach (var product in products)
             {
@@ -36,6 +36,9 @@ namespace BimLibraryServiceTests
                 var downloadId = product.DownloadIdk__BackingField;
                 var image = GetImages(product).FirstOrDefault();
                 var cats = product._productCategories;
+
+                var variants = client.GetModelVariantsForProduct(product.Idk__BackingField);
+
             }
 
 
@@ -50,9 +53,16 @@ namespace BimLibraryServiceTests
         {
             var type = picture.MimeType;
             var data = picture.PictureBinary;
-            var bmp = new BitmapImage();
-            bmp.StreamSource = new System.IO.MemoryStream(data);
-            return bmp;
+
+            using (var ms = new System.IO.MemoryStream(data))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad; // here
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
+            }
         }
     }
 }

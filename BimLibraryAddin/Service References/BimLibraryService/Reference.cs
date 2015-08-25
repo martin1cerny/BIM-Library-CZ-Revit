@@ -31,6 +31,8 @@ namespace BimLibraryAddin.BimLibraryService {
         
         private BimLibraryAddin.BimLibraryService.ProductModel3D[] _productModel3DsField;
         
+        private BimLibraryAddin.BimLibraryService.ProductModelVariant[] _productModelVariantsField;
+        
         private BimLibraryAddin.BimLibraryService.ProductPicture[] _productPicturesField;
         
         private BimLibraryAddin.BimLibraryService.ProductReview[] _productReviewsField;
@@ -307,6 +309,19 @@ namespace BimLibraryAddin.BimLibraryService {
                 if ((object.ReferenceEquals(this._productModel3DsField, value) != true)) {
                     this._productModel3DsField = value;
                     this.RaisePropertyChanged("_productModel3Ds");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public BimLibraryAddin.BimLibraryService.ProductModelVariant[] _productModelVariants {
+            get {
+                return this._productModelVariantsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this._productModelVariantsField, value) != true)) {
+                    this._productModelVariantsField = value;
+                    this.RaisePropertyChanged("_productModelVariants");
                 }
             }
         }
@@ -1637,6 +1652,7 @@ namespace BimLibraryAddin.BimLibraryService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(BimLibraryAddin.BimLibraryService.DiscountRequirement))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(BimLibraryAddin.BimLibraryService.Warehouse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(BimLibraryAddin.BimLibraryService.Model3D))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(BimLibraryAddin.BimLibraryService.ModelVariant))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(BimLibraryAddin.BimLibraryService.Picture))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(BimLibraryAddin.BimLibraryService.ProductAttributeCombination))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(BimLibraryAddin.BimLibraryService.ProductAttributeMapping))]
@@ -1646,6 +1662,7 @@ namespace BimLibraryAddin.BimLibraryService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(BimLibraryAddin.BimLibraryService.ProductManufacturer))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(BimLibraryAddin.BimLibraryService.Manufacturer))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(BimLibraryAddin.BimLibraryService.ProductModel3D))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(BimLibraryAddin.BimLibraryService.ProductModelVariant))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(BimLibraryAddin.BimLibraryService.ProductPicture))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(BimLibraryAddin.BimLibraryService.ProductReview))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(BimLibraryAddin.BimLibraryService.ProductReviewHelpfulness))]
@@ -3021,6 +3038,29 @@ namespace BimLibraryAddin.BimLibraryService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelVariant", Namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Media")]
+    [System.SerializableAttribute()]
+    public partial class ModelVariant : BimLibraryAddin.BimLibraryService.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Picture", Namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Media")]
     [System.SerializableAttribute()]
     public partial class Picture : BimLibraryAddin.BimLibraryService.BaseEntity {
@@ -4300,6 +4340,77 @@ namespace BimLibraryAddin.BimLibraryService {
                 if ((object.ReferenceEquals(this.Productk__BackingFieldField, value) != true)) {
                     this.Productk__BackingFieldField = value;
                     this.RaisePropertyChanged("Productk__BackingField");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductModelVariant", Namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog")]
+    [System.SerializableAttribute()]
+    public partial class ProductModelVariant : BimLibraryAddin.BimLibraryService.BaseEntity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private BimLibraryAddin.BimLibraryService.ModelVariant ModelVariantField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ModelVariantIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private BimLibraryAddin.BimLibraryService.Product ProductField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProductIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public BimLibraryAddin.BimLibraryService.ModelVariant ModelVariant {
+            get {
+                return this.ModelVariantField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ModelVariantField, value) != true)) {
+                    this.ModelVariantField = value;
+                    this.RaisePropertyChanged("ModelVariant");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ModelVariantId {
+            get {
+                return this.ModelVariantIdField;
+            }
+            set {
+                if ((this.ModelVariantIdField.Equals(value) != true)) {
+                    this.ModelVariantIdField = value;
+                    this.RaisePropertyChanged("ModelVariantId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public BimLibraryAddin.BimLibraryService.Product Product {
+            get {
+                return this.ProductField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductField, value) != true)) {
+                    this.ProductField = value;
+                    this.RaisePropertyChanged("Product");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProductId {
+            get {
+                return this.ProductIdField;
+            }
+            set {
+                if ((this.ProductIdField.Equals(value) != true)) {
+                    this.ProductIdField = value;
+                    this.RaisePropertyChanged("ProductId");
                 }
             }
         }
@@ -5677,16 +5788,28 @@ namespace BimLibraryAddin.BimLibraryService {
         System.Threading.Tasks.Task<BimLibraryAddin.BimLibraryService.Category[]> GetAllCategoriesByParentCategoryIdAsync(int parentCategoryId, bool showHidden);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetZipById", ReplyAction="http://tempuri.org/IBIMservice/GetZipByIdResponse")]
-        System.IO.Stream GetZipById(int productId, string variant);
+        System.IO.Stream GetZipById(int productId, string modelVariantName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetZipById", ReplyAction="http://tempuri.org/IBIMservice/GetZipByIdResponse")]
-        System.Threading.Tasks.Task<System.IO.Stream> GetZipByIdAsync(int productId, string variant);
+        System.Threading.Tasks.Task<System.IO.Stream> GetZipByIdAsync(int productId, string modelVariantName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetZipByName", ReplyAction="http://tempuri.org/IBIMservice/GetZipByNameResponse")]
-        System.IO.Stream GetZipByName(string name, string variant);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetModelVariantsForProduct", ReplyAction="http://tempuri.org/IBIMservice/GetModelVariantsForProductResponse")]
+        BimLibraryAddin.BimLibraryService.ModelVariant[] GetModelVariantsForProduct(int productId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetZipByName", ReplyAction="http://tempuri.org/IBIMservice/GetZipByNameResponse")]
-        System.Threading.Tasks.Task<System.IO.Stream> GetZipByNameAsync(string name, string variant);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetModelVariantsForProduct", ReplyAction="http://tempuri.org/IBIMservice/GetModelVariantsForProductResponse")]
+        System.Threading.Tasks.Task<BimLibraryAddin.BimLibraryService.ModelVariant[]> GetModelVariantsForProductAsync(int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetAllModelVariants", ReplyAction="http://tempuri.org/IBIMservice/GetAllModelVariantsResponse")]
+        BimLibraryAddin.BimLibraryService.ModelVariant[] GetAllModelVariants();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetAllModelVariants", ReplyAction="http://tempuri.org/IBIMservice/GetAllModelVariantsResponse")]
+        System.Threading.Tasks.Task<BimLibraryAddin.BimLibraryService.ModelVariant[]> GetAllModelVariantsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetProductByNameWithModelVariant", ReplyAction="http://tempuri.org/IBIMservice/GetProductByNameWithModelVariantResponse")]
+        BimLibraryAddin.BimLibraryService.Product[] GetProductByNameWithModelVariant(string name, bool withPictures, string modelVariantName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBIMservice/GetProductByNameWithModelVariant", ReplyAction="http://tempuri.org/IBIMservice/GetProductByNameWithModelVariantResponse")]
+        System.Threading.Tasks.Task<BimLibraryAddin.BimLibraryService.Product[]> GetProductByNameWithModelVariantAsync(string name, bool withPictures, string modelVariantName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -5748,20 +5871,36 @@ namespace BimLibraryAddin.BimLibraryService {
             return base.Channel.GetAllCategoriesByParentCategoryIdAsync(parentCategoryId, showHidden);
         }
         
-        public System.IO.Stream GetZipById(int productId, string variant) {
-            return base.Channel.GetZipById(productId, variant);
+        public System.IO.Stream GetZipById(int productId, string modelVariantName) {
+            return base.Channel.GetZipById(productId, modelVariantName);
         }
         
-        public System.Threading.Tasks.Task<System.IO.Stream> GetZipByIdAsync(int productId, string variant) {
-            return base.Channel.GetZipByIdAsync(productId, variant);
+        public System.Threading.Tasks.Task<System.IO.Stream> GetZipByIdAsync(int productId, string modelVariantName) {
+            return base.Channel.GetZipByIdAsync(productId, modelVariantName);
         }
         
-        public System.IO.Stream GetZipByName(string name, string variant) {
-            return base.Channel.GetZipByName(name, variant);
+        public BimLibraryAddin.BimLibraryService.ModelVariant[] GetModelVariantsForProduct(int productId) {
+            return base.Channel.GetModelVariantsForProduct(productId);
         }
         
-        public System.Threading.Tasks.Task<System.IO.Stream> GetZipByNameAsync(string name, string variant) {
-            return base.Channel.GetZipByNameAsync(name, variant);
+        public System.Threading.Tasks.Task<BimLibraryAddin.BimLibraryService.ModelVariant[]> GetModelVariantsForProductAsync(int productId) {
+            return base.Channel.GetModelVariantsForProductAsync(productId);
+        }
+        
+        public BimLibraryAddin.BimLibraryService.ModelVariant[] GetAllModelVariants() {
+            return base.Channel.GetAllModelVariants();
+        }
+        
+        public System.Threading.Tasks.Task<BimLibraryAddin.BimLibraryService.ModelVariant[]> GetAllModelVariantsAsync() {
+            return base.Channel.GetAllModelVariantsAsync();
+        }
+        
+        public BimLibraryAddin.BimLibraryService.Product[] GetProductByNameWithModelVariant(string name, bool withPictures, string modelVariantName) {
+            return base.Channel.GetProductByNameWithModelVariant(name, withPictures, modelVariantName);
+        }
+        
+        public System.Threading.Tasks.Task<BimLibraryAddin.BimLibraryService.Product[]> GetProductByNameWithModelVariantAsync(string name, bool withPictures, string modelVariantName) {
+            return base.Channel.GetProductByNameWithModelVariantAsync(name, withPictures, modelVariantName);
         }
     }
 }

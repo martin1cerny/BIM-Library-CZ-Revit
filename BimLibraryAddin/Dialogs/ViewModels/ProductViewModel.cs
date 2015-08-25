@@ -24,6 +24,8 @@ namespace BimLibraryAddin.Dialogs.ViewModels
         public string ShortDescription { get { return _product.ShortDescriptionk__BackingField; } }
         public string Description { get { return _product.FullDescriptionk__BackingField; } }
 
+        public int Id { get { return _product.Idk__BackingField; } }
+
         public IEnumerable<BitmapImage> Images
         {
             get
@@ -38,9 +40,16 @@ namespace BimLibraryAddin.Dialogs.ViewModels
         {
             var type = picture.MimeType;
             var data = picture.PictureBinary;
-            var bmp = new BitmapImage();
-            bmp.StreamSource = new System.IO.MemoryStream(data);
-            return bmp;
+
+            using (var ms = new System.IO.MemoryStream(data))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad; // here
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
+            }
         }
     }
 }
