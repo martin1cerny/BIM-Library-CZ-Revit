@@ -80,7 +80,11 @@ namespace BimLibraryAddin.Dialogs
                     {
                         using (var zip = new ZipArchive(zipStream, ZipArchiveMode.Read))
                         {
-                            var familyEntry = zip.Entries.FirstOrDefault(entry => entry.Name.EndsWith(".rfa", StringComparison.InvariantCultureIgnoreCase));
+                            var familyEntry = zip.Entries.FirstOrDefault(entry =>
+                                //family file
+                                entry.Name.EndsWith(".rfa", StringComparison.InvariantCultureIgnoreCase) ||
+                                //system file
+                                entry.Name.EndsWith(".rvt", StringComparison.InvariantCultureIgnoreCase));
                             if (familyEntry == null)
                             {
                                 errMsg += String.Format("Soubor pro rodinu {0} v knihovně není \n", product.Name);
@@ -88,8 +92,8 @@ namespace BimLibraryAddin.Dialogs
                             }
 
                             //extract to temp file
-                            var extension = System.IO.Path.GetExtension(familyEntry.Name);
-                            tempFile = System.IO.Path.Combine(tempDir, product.Name + extension);
+                            var ext = System.IO.Path.GetExtension(familyEntry.Name);
+                            tempFile = System.IO.Path.Combine(tempDir, product.Name + ext);
                             using (var entryStream = familyEntry.Open())
                             {
                                 using (var tempStream = System.IO.File.Create(tempFile))
@@ -104,28 +108,42 @@ namespace BimLibraryAddin.Dialogs
 
                     if (!FileExists(tempFile))
                     {
-                        errMsg += String.Format("Žádný soubor pro Revit není v knihovně pro {0} \n", product.Name);
+                        errMsg += String.Format("Žádný soubor pro Revit není v BIM knihovně pro {0} \n", product.Name);
                         continue;
                     }
 
-                    //check if family doesn't exist in the document already
-                    var name = System.IO.Path.GetFileNameWithoutExtension(tempFile);
-                    if(ExistingFamilies.Any(f => f.Name == name))
+                    var extension = System.IO.Path.GetExtension(tempFile).ToLower();
+                    switch (extension)
                     {
-                        errMsg += String.Format("{0} již v projektu existuje. \n", product.Name);
-                        continue;
-                    }
+                        case ".rfa":
+                            //if it is family we can load it straight away
+                            //check if family doesn't exist in the document already
+                            var name = System.IO.Path.GetFileNameWithoutExtension(tempFile);
+                            if (ExistingFamilies.Any(f => f.Name == name))
+                            {
+                                errMsg += String.Format("{0} již v projektu existuje. \n", product.Name);
+                                continue;
+                            }
 
-                    //load family
-                    Family family;
-                    if (! _document.LoadFamily(tempFile, out family))
-                    {
-                        errMsg += String.Format("{0} se nepodařilo importovat, i když sobor v knihovně existuje. \n", product.Name);
-                        continue;
-                    }
+                            //load family
+                            Family family;
+                            if (!_document.LoadFamily(tempFile, out family))
+                            {
+                                errMsg += String.Format("{0} se nepodařilo importovat, i když sobor v knihovně existuje. \n", product.Name);
+                                continue;
+                            }
 
-                    var symbolId = family.GetFamilySymbolIds().FirstOrDefault();
-                    LastSymbol = _document.GetElement(symbolId) as FamilySymbol;
+                            var symbolId = family.GetFamilySymbolIds().FirstOrDefault();
+                            LastSymbol = _document.GetElement(symbolId) as FamilySymbol;
+                            break;
+                        case ".rvt":
+                            //if it is family file containing system family it is up to user to copy it over using cut+paste
+                            //but we can open it for them
+                            _document.Application.OpenDocumentFile(tempFile);
+                            break;
+                        default:
+                            throw new Exception("Unexpected file extension " + extension);
+                    }
                 }
                 catch (Exception ex)
                 {
