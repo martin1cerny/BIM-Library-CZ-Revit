@@ -30,9 +30,9 @@ namespace BimLibraryAddin.Dialogs
         public static void ShowFor(int seconds)
         {
             var handle = new RevitHandle();
-            var dlg = new About();
+            var dlg = new About { WindowStyle = WindowStyle.None};
             handle.SetAsOwnerTo(dlg);
-            
+
             dlg.Show();
             Thread.Sleep(seconds * 1000);
             dlg.Close();

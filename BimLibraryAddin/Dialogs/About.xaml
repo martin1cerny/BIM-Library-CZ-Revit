@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              Height="290" 
         Width="530" 
-        WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         WindowState="Normal"
         ResizeMode="NoResize" Background="White" BorderBrush="Black" BorderThickness="1">

@@ -33,8 +33,8 @@ namespace BimLibraryAddin
         {
 
             // add new ribbon panel 
-            application.CreateRibbonTab("Národní BIM knihovna");
-            _panel = application.CreateRibbonPanel("Národní BIM knihovna", "Nástroje");
+            application.CreateRibbonTab("BIM knihovna");
+            _panel = application.CreateRibbonPanel("BIM knihovna", "Nástroje");
             _panel.Enabled = true;
 
             //get assembly of this class to set the right path to other objects in this assembly
@@ -43,18 +43,28 @@ namespace BimLibraryAddin
             var dirPath = Path.GetDirectoryName(assemblyPath);
 
             //-----------------------------BUTTONS FOR COMMANDS ----------------------------
-            var btnSettings = _panel.AddItem(new PushButtonData(
+            var btnSearch = _panel.AddItem(new PushButtonData(
                 "GetObject",
                 "Vyhledávání",
                 assemblyPath,
                 "BimLibraryAddin.AddIns.ProductSearchAddIn"
                 )) as PushButton;
-            btnSettings.LargeImage = new BitmapImage(new Uri("pack://application:,,,/BimLibraryAddin;component/Icons/logo.ico"));
-            btnSettings.AvailabilityClassName = "BimLibraryAddin.AddIns.DocumentAvailability";
-            btnSettings.ToolTip = "Vyhledávání objektů v národní BIM knihovně";
-            btnSettings.LongDescription = 
+            btnSearch.LargeImage = new BitmapImage(new Uri("pack://application:,,,/BimLibraryAddin;component/Icons/logo.ico"));
+            btnSearch.AvailabilityClassName = "BimLibraryAddin.AddIns.DocumentAvailability";
+            btnSearch.ToolTip = "Vyhledávání objektů v národní BIM knihovně";
+            btnSearch.LongDescription = 
 @"Vyhledané objekty je možné importovat do aktuálního projektu a okamžitě použít.";
 
+            var btnAbout = _panel.AddItem(new PushButtonData(
+                "About",
+                "O aplikaci",
+                assemblyPath,
+                "BimLibraryAddin.AddIns.AboutAddIn"
+                )) as PushButton;
+            btnAbout.LargeImage = new BitmapImage(new Uri("pack://application:,,,/BimLibraryAddin;component/Icons/info.ico"));
+            btnAbout.ToolTip = "Informace o tomto nástroji";
+
+            //------------------------ EVENTS REGISTRATION ------------------------------------
             application.ControlledApplication.DocumentOpened += new EventHandler<DocumentOpenedEventArgs>(ControlledApplication_DocumentOpened);
             application.ControlledApplication.DocumentCreated += new EventHandler<DocumentCreatedEventArgs>(ControlledApplication_DocumentCreating);
             application.ControlledApplication.DocumentClosing += new EventHandler<DocumentClosingEventArgs>(ControlledApplication_DocumentClosing);

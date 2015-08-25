@@ -20,6 +20,8 @@ namespace BimLibraryAddin
             }
         }
 
+
+
         public static string ErrorFile
         {
             get
