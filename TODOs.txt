@@ -1,0 +1,3 @@
+Jak řešit, když je v rodině velké množství typů? Měli by být samostatné v BIM knihovně, takže je možné je stáhnout jednotlivě? Trochu se tím ztratí struktura a bude nutné zachovat unikátní názvy prostřednictvím nějaké rozumné konvence.
+
+Bude časem nutné umožnit vyhledávání pomocí kategorií a také dodatečné filtrování pomocí kategorií.
